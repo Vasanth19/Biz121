@@ -33,5 +33,7 @@ namespace Biz121.Web.Models
                _transportTypeData = value;
             }
         }
+
+        public bool Status { get; set; }
     }
 }

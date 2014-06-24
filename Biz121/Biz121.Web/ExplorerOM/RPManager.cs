@@ -66,13 +66,15 @@ namespace Biz121.Web.ExplorerOM
         }
         private static BizRL MapToBizRL(ReceiveLocation r)
         {
+            
             BizRL rl = new BizRL()
             {
                 Name = r.Name,
                 TransportType = r.TransportType.Name,
-                Address = r.PublicAddress,
+                Address = r.Address,
                 PipelineName = r.ReceivePipeline.FullName,
-                TransportTypeData = r.TransportTypeData
+                TransportTypeData = r.TransportTypeData,
+                Status = r.Enable
             };
             return rl;
         }

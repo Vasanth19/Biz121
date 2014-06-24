@@ -4,10 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8">
-    <title>Tables - Ace Admin</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>Biz-121-Talk</title>
     <meta name="description" content="Static &amp; Dynamic Tables">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
@@ -70,10 +67,9 @@
 
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
-
                     <li class="light-blue">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="~/Images/avatar.jpe" alt="@User.Identity.Name">
+                            <img class="nav-user-photo" src="~/Images/userImage.jpg" alt="@User.Identity.Name">
 
                             <span class="user-info">
                                 <small>Welcome,</small>
@@ -110,9 +106,10 @@
             <div class="footer-inner">
                 <div class="footer-content">
                     <span class="bigger-120">
-                        <span class="blue bolder">Ace</span>
-                        Application © 2013-2014
+                        <span class="blue bolder">BizTalk 121</span>
+                        Biz121 © 2013-2014
                     </span>
+                    <span> Developed by Vasanth Subramanyam</span>
 
                     &nbsp; &nbsp;
                     <span class="action-buttons">
@@ -176,31 +173,6 @@
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
         jQuery(function ($) {
-            var oTable1 =
-            $('#sample-table-2')
-            //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-            .dataTable({
-                bAutoWidth: false,
-                "aoColumns": [
-                  { "bSortable": false },
-                  null, null, null, null, null,
-                  { "bSortable": false }
-                ]
-
-
-                //,
-                //"sScrollY": "200px",
-                //"bPaginate": false,
-
-                //"sScrollX": "100%",
-                //"sScrollXInner": "120%",
-                //"bScrollCollapse": true,
-                //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                //"iDisplayLength": 50
-            });
-
 
 
             $(document).on('click', 'th input:checkbox', function () {

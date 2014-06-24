@@ -5,12 +5,14 @@ var homeIndexModule = angular.module("homeIndex", ["ngRoute", , "myDataService",
 
 
 homeIndexModule.config(function($routeProvider) {
-    $routeProvider.when("/", { controller: "appController", templateUrl: "/ng-App/templates/applications.html" });
+    $routeProvider.when("/", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
+    $routeProvider.when("/RP", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
+
     $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "/ng-App/templates/dashboard.html" });
     $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "/ng-App/templates/singleAppView.html" });
-    $routeProvider.when("/CBR", { controller: "newCBRController", templateUrl: "/ng-App/templates/CBR.html" });
-    $routeProvider.when("/SP", { controller: "newCBRController", templateUrl: "/ng-App/templates/sendPorts.html" });
-    $routeProvider.when("/RP", { controller: "newCBRController", templateUrl: "/ng-App/templates/receivePorts.html" });
+    $routeProvider.when("/cbr", { controller: "newCBRController", templateUrl: "/ng-App/templates/CBR.html" });
+    $routeProvider.when("/sendports", { controller: "sendPortsController", templateUrl: "/ng-App/templates/sendPorts.html" });
+
 
     $routeProvider.otherwise({ redirectTo: "/" });
 });
@@ -34,6 +36,60 @@ function dashboardController($scope, $http, dataService) {
             .then(function() {
                 isBusy = false;
             });
+    }
+}
+
+
+function receivePortsController($scope, $http, dataService, $filter) {
+
+    $scope.isBusy = true;
+    var orderBy = $filter('orderBy');
+
+    $scope.order = function (predicate, reverse) {
+        $scope.receivePorts = orderBy($scope.receivePorts, predicate, reverse);
+    };
+
+    $scope.receivePorts = [];
+
+    if (dataService.isReady() == false) {
+        dataService.getRPs()
+       .then(function (_rps) {
+           //Success
+           $scope.receivePorts = _rps;
+           console.log($scope.receivePorts);
+       }, function () { //Error
+           console.log("Error Occured while fetching Receive Ports");
+
+       });
+    }
+    else {
+        $scope.receivePorts = dataService.rps;
+    }
+}
+
+function sendPortsController($scope, $http, dataService, $filter) {
+
+    $scope.isBusy = true;
+    var orderBy = $filter('orderBy');
+
+    $scope.order = function (predicate, reverse) {
+        $scope.sendPorts = orderBy($scope.sendPorts, predicate, reverse);
+    };
+
+    $scope.sendPorts = [];
+
+    if (dataService.isReady() == false) {
+        dataService.getSPs()
+       .then(function (_sps) {
+           //Success
+           $scope.sendPorts = _sps;
+       }, function () { //Error
+           console.log("Error Occured while fetching Receive Ports");
+
+       });
+    }
+    else {
+        $scope.sendPorts = dataService.sps;
     }
 }
 
@@ -103,46 +159,7 @@ function appController($scope, $http, dataService) {
         }
     };
 
-    $scope.addMoreGigs = function () {
-        $scope.i = $scope.i + 1;
-        var last = {
-            "title": $scope.i + "$ake a professional quality photo of a phrase or name spelt in...",
-            "title_full": "take a professional quality photo of a phrase or name spelt in Scrabble tiles",
-            "gig_id": 12354,
-            "gig_url": "/ceppii/take-a-professional-quality-photo-of-a-phrase-or-name-spelt-in-scrabble-tiles",
-            "img_medium": "<img src=\"http://cdn1.fiverrcdn.com/photos/327941/v2_162/small3.jpg?1368531638\"  alt=\"take a professional quality photo of a phrase or name spelt in Scrabble tiles\"   >",
-            "video_thumb": false,
-            "seller_name": "ceppii",
-            "seller_img": "<img src=\"http://cdn1.fiverrcdn.com/photos/104001/thumb/springbreak2.jpg?1339889643\"    width=\"32\" height=\"32\">",
-            "seller_created_at": "over 3 years",
-            "seller_country_name": "United States",
-            "seller_country": "us",
-            "seller_url": "/ceppii",
-            "seller_level": "level_two_seller",
-            "gig_locale": "en",
-            "seller_id": 2324
-        };
-        $scope.gigs.push({
-            "title": $scope.i + "$ake a professional quality photo of a phrase or name spelt in...",
-            "title_full": "take a professional quality photo of a phrase or name spelt in Scrabble tiles",
-            "gig_id": 12354,
-            "gig_url": "/ceppii/take-a-professional-quality-photo-of-a-phrase-or-name-spelt-in-scrabble-tiles",
-            "img_medium": "<img src=\"http://cdn1.fiverrcdn.com/photos/327941/v2_162/small3.jpg?1368531638\"  alt=\"take a professional quality photo of a phrase or name spelt in Scrabble tiles\"   >",
-            "video_thumb": false,
-            "seller_name": "ceppii",
-            "seller_img": "<img src=\"http://cdn1.fiverrcdn.com/photos/104001/thumb/springbreak2.jpg?1339889643\"    width=\"32\" height=\"32\">",
-            "seller_created_at": "over 3 years",
-            "seller_country_name": "United States",
-            "seller_country": "us",
-            "seller_url": "/ceppii",
-            "seller_level": "level_two_seller",
-            "gig_locale": "en"
-        });
-
-       // $scope.gigs.splice(0,0,last);
-
-    };
-    $scope.categories = [];
+ 
 
     dataService.getCategories()
         .then(function (categories) {
@@ -205,46 +222,4 @@ function appController($scope, $http, dataService) {
         //Get new results based on subcategory
     };
 
-}
-
-function receivePortsController($scope, $http, dataService) {
-
-    $scope.isBusy = true;
-    $scope.data = dataService;
-
-
-    if (dataService.isReady() == false) {
-        dataService.getTopics()
-            .then(function () {
-                //Success
-            }, function () {
-                //Error
-                console.log("Could not load topics");
-            }
-            )
-            .then(function () {
-                isBusy = false;
-            });
-    }
-}
-
-function sendPortsController($scope, $http, dataService) {
-
-    $scope.isBusy = true;
-    $scope.data = dataService;
-
-
-    if (dataService.isReady() == false) {
-        dataService.getTopics()
-            .then(function () {
-                //Success
-            }, function () {
-                //Error
-                console.log("Could not load topics");
-            }
-            )
-            .then(function () {
-                isBusy = false;
-            });
-    }
 }

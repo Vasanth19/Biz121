@@ -54,7 +54,8 @@ namespace Biz121.Web.ExplorerOM
                 Address = sp.PrimaryTransport.Address,
                 PipelineName = sp.SendPipeline.FullName,
                 ApplicationName = sp.Application.Name,
-                TransportTypeData = sp.PrimaryTransport.TransportTypeData
+                TransportTypeData = sp.PrimaryTransport.TransportTypeData,
+                Status = sp.Status.ToString()
 
             };
             return port;

@@ -1,24 +1,106 @@
-﻿<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
+﻿<div class="page-content">
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+        <div class="page-header">
+            <h1>
+                Receive 
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                     Ports &amp; Locations
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+
+       <div class="form-group">
+           <label class="col-sm-3 control-label no-padding-right" style="text-align:right">Filter Results : </label>
+           <div class="col-sm-9">
+               <input type="text" ng-model="query" id="form-field-1" placeholder="Type Your Query" class="col-xs-10 col-sm-5">
+           </div>
+       </div>
+
+        <div class="hr hr32 hr-dotted"></div>
+           <div class="hr hr-18 dotted hr-double"></div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table id="sample-table-1" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label class="position-relative">
+                                            <input type="checkbox" class="ace">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th><a href="" ng-click="order('name', false)"> Receive Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
+                                    <th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
+                                    <th class="hidden-480">Primary RL</th>
+                                    <th>
+                                        <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                        Receive Location(s)
+                                    </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                               <tr ng-repeat="rp in receivePorts | filter:query" >
+
+                                 <td class="center">
+                                        <label class="position-relative">
+                                            <input type="checkbox" class="ace">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td >
+                                        <b>{{rp.name}}</b>
+                                    </td>
+                                    <td>{{rp.applicationName}}</td>
+                                    <td>{{rp.primaryRL}} </td>
+
+                                     <td style="width:40%">
+                                        <div id="accordionRP{{$index}}" class="accordion-style1 panel-group no-margin " >
+										<div class="panel panel-default"  ng-repeat="rl in rp.rLs">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionRP{{$parent.$index}}" data-target="#collapse{{$parent.$index}}{{$index}}">
+														<i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+														&nbsp;{{rl.name}} &nbsp; 
+                                                        <span class="label label-danger arrowed-in pull-right" ng-hide="rl.status">Stopped</span>
+                                                        <span class="label label-success arrowed pull-right" ng-show="rl.status">Enabled</span>
+													</a>
+												</h4>
+											</div>
+
+											<div class="panel-collapse collapse" id="collapse{{$parent.$index}}{{$index}}">
+												<div class="panel-body">
+													<p> TransPort Type : {{rl.transportType}}</p>
+                                                    <p> Address : {{rl.address}}</p>
+                                                    <p> Retry Count : {{rl.retryCount}}</p>
+                                                    <p> Retry Interval : {{rl.retryInterval}}</p>
+                                                    <p> Pipeline Name : {{rl.pipelineName}}</p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+                                    </td>
+                                </tr>
+
+                                
+
+                            </tbody>
+                        </table>
+                    </div><!-- /.span -->
+                </div><!-- /.row -->
+
+
+                <!-- PAGE CONTENT ENDS -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->

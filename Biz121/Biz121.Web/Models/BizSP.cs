@@ -39,5 +39,7 @@ namespace Biz121.Web.Models
             get;
             set;
         }
+
+        public string Status { get; set; }
     }
 }

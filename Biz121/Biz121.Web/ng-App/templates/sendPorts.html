@@ -1,24 +1,82 @@
-﻿<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
+﻿<div class="page-content">
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+		<div class="page-header">
+			<h1>
+				Send 
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+					 Ports
+				</small>
+			</h1>
+		</div><!-- /.page-header -->
+
+	   <div class="form-group">
+		   <label class="col-sm-3 control-label no-padding-right" style="text-align:right">Filter Results : </label>
+		   <div class="col-sm-9">
+			   <input type="text" ng-model="query" id="form-field-1" placeholder="Type Your Query" class="col-xs-10 col-sm-5">
+		   </div>
+	   </div>
+
+		<div class="hr hr32 hr-dotted"></div>
+		   <div class="hr hr-18 dotted hr-double"></div>
+
+
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<div class="row">
+					<div class="col-xs-12">
+						<table id="sample-table-1" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="center">
+										<label class="position-relative">
+											<input type="checkbox" class="ace">
+											<span class="lbl"></span>
+										</label>
+									</th>
+									<th><a href="" ng-click="order('name', false)"> Send Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
+									<th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
+									<th class="hidden-480">Transport Type</th>
+									<th>
+										<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+										Status
+									</th>
+                                    <th>Details</th>
+
+								</tr>
+							</thead>
+
+							<tbody>
+							   <tr ng-repeat="sp in sendPorts | filter:query" >
+
+								 <td class="center">
+										<label class="position-relative">
+											<input type="checkbox" class="ace">
+											<span class="lbl"></span>
+										</label>
+									</td>
+
+									<td >
+										<b>{{sp.name}}</b>
+									</td>
+									<td>{{sp.applicationName}}</td>
+									<td>{{sp.transportType}} </td>
+                                   <td>{{sp.status}} </td>
+                                   <td>{{sp.PipelineName}} </td>
+									 
+								</tr>
+
+								
+
+							</tbody>
+						</table>
+					</div><!-- /.span -->
+				</div><!-- /.row -->
+
+
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
