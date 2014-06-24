@@ -21,7 +21,7 @@ namespace Biz121.Web.Api
                 try
                 {
                     //UtilityManager.CreateSMTPSendPort(root)
-                    return Ok();
+                    return Ok("Hello");
                 }
                 catch (Exception e)//If it fails, roll-back all changes.
                 {

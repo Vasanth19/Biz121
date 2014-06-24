@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="Api\SPController.cs" />
     <Compile Include="Api\RPController.cs" />
+    <Compile Include="Api\Test\TestRPController.cs" />
     <Compile Include="Api\UtilityController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -165,6 +166,10 @@
     <Compile Include="Utilities\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\ace\ace-rtl.min.css" />
+    <Content Include="Content\themes\ace\ace-skins.min.css" />
+    <Content Include="Content\themes\ace\ace.min.css" />
+    <Content Include="Content\themes\ace\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -222,6 +227,28 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
+    <Content Include="ng-App\data\dataServices.js" />
+    <Content Include="ng-App\js\directives.js" />
+    <Content Include="ng-App\js\filters.js" />
+    <Content Include="ng-App\js\home-index.js" />
+    <Content Include="ng-App\templates\CBR.html" />
+    <Content Include="ng-App\templates\sendPorts.html" />
+    <Content Include="ng-App\templates\receivePorts.html" />
+    <Content Include="ng-App\templates\dashboard.html" />
+    <Content Include="ng-App\templates\applications.html" />
+    <Content Include="ng-App\templates\indexView.html" />
+    <Content Include="ng-App\templates\newGigView.html" />
+    <Content Include="ng-App\templates\singleTopicView.html" />
+    <Content Include="ng-App\_partials\hmCategorySearch.html" />
+    <Content Include="ng-App\_partials\hmGigItem.html" />
+    <Content Include="ng-App\_partials\hmGigItem_old.html" />
+    <Content Include="Scripts\Ace\ace-elements.min.js" />
+    <Content Include="Scripts\Ace\ace-extra.min.js" />
+    <Content Include="Scripts\Ace\ace.min.js" />
+    <Content Include="Scripts\Ace\bootstrap.min.js" />
+    <Content Include="Scripts\Ace\jquery.dataTables.bootstrap.js" />
+    <Content Include="Scripts\Ace\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Ace\jquery.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -289,7 +316,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51059/</IISUrl>
+          <IISUrl>http://localhost:53622/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
