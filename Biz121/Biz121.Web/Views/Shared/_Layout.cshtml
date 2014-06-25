@@ -173,6 +173,12 @@
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
         jQuery(function ($) {
+            //Custom code to trigger sidebar
+            $('#sidebar ul li').click(function (e) {
+                e.preventDefault(); //prevent the link from being followed
+                $('#sidebar ul li').removeClass('active');
+                $(this).addClass('active');
+            });
 
 
             $(document).on('click', 'th input:checkbox', function () {

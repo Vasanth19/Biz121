@@ -15,7 +15,7 @@ dataServiceModule.factory("dataService", function ($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.get("api/v1/rp")
+        $http.get("api/v1/testrp")
             .then(function (result) {
                 //Success
                 angular.copy(result.data, _rps);
@@ -55,8 +55,6 @@ dataServiceModule.factory("dataService", function ($http, $q) {
         sps: _sps,
         getSPs: _getSPs,
         isReady:_isReady
-
-
     };
 
 });
