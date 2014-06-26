@@ -172,10 +172,18 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>aspnetdb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
     <Content Include="Content\themes\ace\ace-rtl.min.css" />
     <Content Include="Content\themes\ace\ace-skins.min.css" />
     <Content Include="Content\themes\ace\ace.min.css" />
     <Content Include="Content\themes\ace\bootstrap.min.css" />
+    <Content Include="Content\themes\ace\chosen.css" />
+    <Content Include="Content\themes\ace\jquery-ui.custom.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -232,6 +240,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Site.less" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Images\userImage.jpg" />
     <Content Include="ng-App\data\dataServices-Reference.js" />
@@ -253,10 +262,12 @@
     <Content Include="Scripts\Ace\ace-extra.min.js" />
     <Content Include="Scripts\Ace\ace.min.js" />
     <Content Include="Scripts\Ace\bootstrap.min.js" />
+    <Content Include="Scripts\Ace\chosen.jquery.min.js" />
     <Content Include="Scripts\Ace\jquery-ui.custom.min.js" />
     <Content Include="Scripts\Ace\jquery.dataTables.bootstrap.js" />
     <Content Include="Scripts\Ace\jquery.dataTables.min.js" />
     <Content Include="Scripts\Ace\jquery.min.js" />
+    <Content Include="Scripts\Ace\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -279,7 +290,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site-Remove.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />

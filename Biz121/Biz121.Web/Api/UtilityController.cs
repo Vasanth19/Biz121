@@ -30,7 +30,7 @@ namespace Biz121.Web.Api
            
         }
 
-       [Route("util/FMR")]
+       [Route("util/cbr")]
        [HttpPost]
         public IHttpActionResult HandleFMR(FMR fmr)
         {

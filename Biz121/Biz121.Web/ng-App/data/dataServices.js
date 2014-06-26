@@ -22,7 +22,7 @@ dataServiceModule.factory("dataService", function ($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.get("api/v1/testrp")
+        $http.get("api/v1/rp")
             .then(function (result) {
                 //Success
                 angular.copy(result.data, _rps);

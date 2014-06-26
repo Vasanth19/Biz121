@@ -19,29 +19,25 @@ homeIndexModule.config(function($routeProvider) {
 });
 
 
-function dashboardController($scope, $http, dataService) {
-
-    $scope.isBusy = true;
-    $scope.data = dataService;
-
-
-    if (dataService.isReady() == false) {
-        dataService.getTopics()
-            .then(function() {
-                    //Success
-                }, function() {
-                    //Error
-                    console.log("Could not load topics");
-                }
-            )
-            .then(function() {
-                isBusy = false;
-            });
-    }
+// private 
+function handleError(status)
+{
+    if (status == 401)
+        window.location = "error/401";
+    else if (status == 404)
+        window.location = "error/404";
+    else
+        window.location = "error";
 }
 
 
-function receivePortsController($scope, $http, dataService, $filter, $location) {
+function dashboardController($scope, $http, dataService) {
+
+    
+}
+
+
+function receivePortsController($scope, $http, dataService, $filter) {
 
     $scope.isBusy = true;
     var orderBy = $filter('orderBy');
@@ -59,13 +55,7 @@ function receivePortsController($scope, $http, dataService, $filter, $location) 
            $scope.receivePorts = _rps;
            console.log($scope.receivePorts);
        }, function (status) { //Error
-           if (status == 401)
-               window.location = "error/401";
-           else if (status ==404)
-               window.location = "error/404";
-           else
-               window.location = "error";
-
+           handleError(status);
            console.log("Error Occured while fetching Receive Ports " + status);
 
        });
@@ -92,12 +82,7 @@ function sendPortsController($scope, $http, dataService, $filter) {
            //Success
            $scope.sendPorts = _sps;
        }, function () { //Error
-           if (status == 401)
-               window.location = "error/401";
-           else if (status == 404)
-               window.location = "error/404";
-           else
-               window.location = "error";
+           handleError(status);
            console.log("Error Occured while fetching Send Ports " + status);
        });
     }
@@ -107,10 +92,23 @@ function sendPortsController($scope, $http, dataService, $filter) {
 }
 
 function newCBRController($scope, $http, $location, dataService) {
-    $scope.newTopic = {};
+    $scope.newReceivePort = {};
+    $scope.newReceiveLocation = {};
+
+
+    $scope.$watch('newReceiveLocation', function () {
+        console.log('hey, myVar has changed!');
+    });
+
+    $scope.AssociateRL = function()
+    {
+        $scope.newReceivePort.rLs = [];
+        $scope.newReceivePort.rLs.push($scope.newReceivelocation);
+
+    }
 
     $scope.save = function() {
-        dataService.addTopic($scope.newTopic).then(function() {
+        dataService.addTopic($scope.newReceivePort).then(function () {
             //Success
             $location.path("#/");
         }, function() {

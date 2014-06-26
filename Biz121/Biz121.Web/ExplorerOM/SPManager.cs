@@ -62,7 +62,8 @@ namespace Biz121.Web.ExplorerOM
         }
         #endregion
 
-        #region Get Methods
+        #region Create Methods
+
         internal static void CreateSendPort(Microsoft.BizTalk.ExplorerOM.BtsCatalogExplorer root, Models.BizSP port)
         {
             root.ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
@@ -89,11 +90,6 @@ namespace Biz121.Web.ExplorerOM
             sendPort.Status = PortStatus.Started;
             root.SaveChanges();
 
-            if (sendPort.RouteFailedMessage)
-            {
-                //Create a SMTP SendPort
-             //   CreateSMTPSendPort(root,App, port.Name, port.SubscribeToRP);
-            }
 
         }
 
