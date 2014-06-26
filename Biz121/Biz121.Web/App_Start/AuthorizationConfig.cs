@@ -13,6 +13,7 @@ namespace Biz121.Web
         {
             try
             {
+                Roles.AddUserToRole("SIVA\\Vasanth", "Administrator");
                 if ( !Roles.RoleExists( "Administrator" ) )
                 {
                     Roles.CreateRole( "Administrator" );
