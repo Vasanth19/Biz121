@@ -11,6 +11,7 @@
 			</h1>
 		</div><!-- /.page-header -->
 
+
 	   <div class="form-group">
 		   <label class="col-sm-3 control-label no-padding-right" style="text-align:right">Filter Results : </label>
 		   <div class="col-sm-9">
@@ -39,10 +40,6 @@
 									<th><a href="" ng-click="order('name', false)"> Send Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
 									<th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
 									<th class="hidden-480">Transport Type</th>
-									<th>
-										<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-										Status
-									</th>
                                     <th>Details</th>
 
 								</tr>
@@ -63,8 +60,43 @@
 									</td>
 									<td>{{sp.applicationName}}</td>
 									<td>{{sp.transportType}} </td>
-                                   <td>{{sp.status}} </td>
-                                   <td>{{sp.PipelineName}} </td>
+                                   <td style="width:40%">
+                                        <div id="accordion{{$index}}" class="accordion-style1 panel-group no-margin " >
+										<div class="panel panel-default" >
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion{{$index}}" data-target="#collapse{{$index}}">
+														<i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+														&nbsp;Additional Details..&nbsp; 
+                                                        <span class="label label-danger arrowed-in pull-right" ng-hide="sp.status=='Started'">{{sp.status}}</span>
+                                                        <span class="label label-success arrowed pull-right" ng-show="sp.status=='Started'">{{sp.status}}</span>
+													</a>
+												</h4>
+											</div>
+
+											<div class="panel-collapse collapse" id="collapse{{$index}}">
+												<div class="panel-body">
+													<p> Description : {{sp.description}}</p>
+                                                    <p> Address : {{sp.address}}</p>
+                                                    <p> Retry Count : {{sp.retryCount}}</p>
+                                                    <p> Retry Interval : {{sp.retryInterval}}</p>
+                                                    <p> Pipeline Name : {{sp.pipelineName}}</p>
+                                                    <p>
+                                                        <div class="alert alert-success" ng-show="sp.filter">
+                                                            <button type="button" class="close" data-dismiss="alert">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </button>
+                                                            <strong>Send Port Filter</strong>
+                                                            {{sp.filter}}
+										                <br>
+                                                        </div>
+                                                       </p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+                                    </td>
 									 
 								</tr>
 
@@ -80,3 +112,4 @@
 			</div><!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
+

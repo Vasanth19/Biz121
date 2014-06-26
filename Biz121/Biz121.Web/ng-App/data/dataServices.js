@@ -5,25 +5,32 @@ dataServiceModule.factory("dataService", function ($http, $q) {
     var _topics = [];
     var _rps = [];
     var _sps = [];
-    var _isInit = false;
+    var _rpInit = false;
+    var _spInit = false;
 
-    var _isReady = function() {
-        return _isInit;
-    };
+    var _isRPReady = function ()
+    {
+        return _rpInit;
+    }
+
+    var _isSPReady = function () {
+        return _rpInit;
+    }
+
 
     var _getRPs = function () {
 
         var deferred = $q.defer();
 
-        $http.get("api/v1/testrp")
+        $http.get("api/v1/rp")
             .then(function (result) {
                 //Success
                 angular.copy(result.data, _rps);
-                _isInit = true;
+                _rpInit = true;
                 deferred.resolve(_rps);
             },
-                function () {
-                    deferred.reject();
+                function (result) {
+                    deferred.reject(result.status);
                 }
             );
         return deferred.promise;
@@ -37,11 +44,11 @@ dataServiceModule.factory("dataService", function ($http, $q) {
             .then(function (result) {
                 //Success
                 angular.copy(result.data, _sps);
-                _isInit = true;
+                _spInit = true;
                 deferred.resolve(_sps);
             },
-                function () {
-                    deferred.reject();
+                function (result) {
+                    deferred.reject(result.status);
                 }
             );
         return deferred.promise;
@@ -54,7 +61,8 @@ dataServiceModule.factory("dataService", function ($http, $q) {
         getRPs: _getRPs,
         sps: _sps,
         getSPs: _getSPs,
-        isReady:_isReady
+        IsRPReady: _isRPReady,
+        IsSPReady: _isSPReady
     };
 
 });

@@ -8,6 +8,7 @@ homeIndexModule.config(function($routeProvider) {
     $routeProvider.when("/", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
     $routeProvider.when("/RP", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
 
+    $routeProvider.when("/applications", { controller: "dashboardController", templateUrl: "/ng-App/templates/applications.html" });
     $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "/ng-App/templates/dashboard.html" });
     $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "/ng-App/templates/singleAppView.html" });
     $routeProvider.when("/cbr", { controller: "newCBRController", templateUrl: "/ng-App/templates/CBR.html" });
@@ -40,7 +41,7 @@ function dashboardController($scope, $http, dataService) {
 }
 
 
-function receivePortsController($scope, $http, dataService, $filter) {
+function receivePortsController($scope, $http, dataService, $filter, $location) {
 
     $scope.isBusy = true;
     var orderBy = $filter('orderBy');
@@ -51,14 +52,21 @@ function receivePortsController($scope, $http, dataService, $filter) {
 
     $scope.receivePorts = [];
 
-    if (dataService.isReady() == false) {
+    if (dataService.IsRPReady() == false) {
         dataService.getRPs()
        .then(function (_rps) {
            //Success
            $scope.receivePorts = _rps;
            console.log($scope.receivePorts);
-       }, function () { //Error
-           console.log("Error Occured while fetching Receive Ports");
+       }, function (status) { //Error
+           if (status == 401)
+               window.location = "error/401";
+           else if (status ==404)
+               window.location = "error/404";
+           else
+               window.location = "error";
+
+           console.log("Error Occured while fetching Receive Ports " + status);
 
        });
     }
@@ -78,14 +86,19 @@ function sendPortsController($scope, $http, dataService, $filter) {
 
     $scope.sendPorts = [];
 
-    if (dataService.isReady() == false) {
+    if (dataService.IsSPReady() == false) {
         dataService.getSPs()
        .then(function (_sps) {
            //Success
            $scope.sendPorts = _sps;
        }, function () { //Error
-           console.log("Error Occured while fetching Receive Ports");
-
+           if (status == 401)
+               window.location = "error/401";
+           else if (status == 404)
+               window.location = "error/404";
+           else
+               window.location = "error";
+           console.log("Error Occured while fetching Send Ports " + status);
        });
     }
     else {

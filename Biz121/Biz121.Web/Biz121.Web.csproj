@@ -147,10 +147,12 @@
     <Compile Include="Api\RPController.cs" />
     <Compile Include="Api\Test\TestRPController.cs" />
     <Compile Include="Api\UtilityController.cs" />
+    <Compile Include="App_Start\AuthorizationConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ExplorerOM\SPManager.cs" />
     <Compile Include="ExplorerOM\RPManager.cs" />
@@ -166,6 +168,10 @@
     <Compile Include="Utilities\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnetdb.mdf" />
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>aspnetdb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\themes\ace\ace-rtl.min.css" />
     <Content Include="Content\themes\ace\ace-skins.min.css" />
     <Content Include="Content\themes\ace\ace.min.css" />
@@ -247,9 +253,11 @@
     <Content Include="Scripts\Ace\ace-extra.min.js" />
     <Content Include="Scripts\Ace\ace.min.js" />
     <Content Include="Scripts\Ace\bootstrap.min.js" />
+    <Content Include="Scripts\Ace\jquery-ui.custom.min.js" />
     <Content Include="Scripts\Ace\jquery.dataTables.bootstrap.js" />
     <Content Include="Scripts\Ace\jquery.dataTables.min.js" />
     <Content Include="Scripts\Ace\jquery.min.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -295,10 +303,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\Notfound.cshtml" />
+    <Content Include="Views\Error\Accessdenied.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

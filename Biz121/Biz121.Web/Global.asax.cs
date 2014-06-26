@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Biz121.Web
 {
@@ -23,7 +24,14 @@ namespace Biz121.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            GlobalConfiguration.Configuration.EnsureInitialized(); 
+            //Custom Role Provider
+            AuthorizationConfig.Initialize();
+
+            GlobalConfiguration.Configuration.EnsureInitialized();
+            
+            
+       
+
         }
     }
 }
