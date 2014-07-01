@@ -1,0 +1,10 @@
+﻿[
+      { id: 0, name: 'Adam', email: 'adam@email.com', age: 10 },
+      { id: 1, name: 'Amalie', email: 'amalie@email.com', age: 12 },
+      { id: 2, name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
+      { id: 3, name: 'Samantha', email: 'samantha@email.com', age: 31 },
+      { id: 4, name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
+      { id: 5, name: 'Natasha', email: 'natasha@email.com', age: 54 },
+      { id: 6, name: 'Nicole', email: 'nicole@email.com', age: 43 },
+      { id: 7, name: 'Adrian', email: 'adrian@email.com', age: 21 }
+]

@@ -79,174 +79,168 @@
 												<h3 class="lighter block green">Enter the following information</h3>
 
 												
+                                                <!--http://scotch.io/tutorials/javascript/angularjs-form-validation-->
+                                                <form class="form-horizontal" id="validation-form" name="rpForm" method="get" novalidate="novalidate">
+                                                    <!--<cnginput ng-model="newReceivePort.name" form="rpForm" elname="rpName"></cnginput>-->
+                                                    <pre>{{newReceivePort}} {{rpForm.$invalid}}</pre>
 
-												<form class="form-horizontal" id="validation-form" method="get" novalidate="novalidate">
-													<div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Receive Port Name:</label>
+                                                    <field ng-model="newReceivePort.name" type="text" name="rpName" label="{{'ReceivePort' + ' Name'}}" required>
+                                                        <validator key="required">Port Name is Required</validator>
+                                                    </field>
 
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<input type="text" name="text" id="rpName" class="col-xs-12 col-sm-6" ng-model="newReceivePort.name">
-															</div>
-														</div>
-													</div>
-
-													<div class="space-2"></div>
-
-													<div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Description:</label>
-
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<input type="text" name="text" id="rpDescription" class="col-xs-12 col-sm-6"  ng-model="newReceivePort.description">
-															</div>
-														</div>
-													</div>
-
-													<div class="space-2"></div>
-
-													<div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Application Name:</label>
-
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<input type="text" name="text" id="appName" class="col-xs-12 col-sm-6"  ng-model="newReceivePort.applicationName">
-															</div>
-														</div>
-													</div>
-
-													<div class="hr hr-dotted"></div>
-
-													<div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">Receive Location Name:</label>
-
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<input type="text" id="rlname" name="rlname" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.name">
-															</div>
-														</div>
-													</div>
-
-													<div class="space-2"></div>
-
-                                                  <div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone">Transport Type</label>
-														<div class="col-xs-12 col-sm-6">
-															<div class="clearfix">
-																<input type="text" id="trntype" name="trntype" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.transportType">
-															</div>
-														</div>
-                                                   </div>
-                                                	
                                                     <div class="space-2"></div>
+
+                                                    <field ng-model="newReceivePort.description" type="text" name="rpDesc" label="{{'ReceivePort' + ' Description'}}" optional="true"></field>
+
+                                                    <div class="space-2"></div>
+
                                                     <div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">Address URI:</label>
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Application Name:</label>
 
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<input type="text" id="rladdress" name="rladdress" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.address">
-															</div>
-														</div>
-													</div>
-
-
-													<div class="hr hr-dotted"></div>
-                                                    
-                                                    <div  class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right"  for="form-field-select-3">Chosen</label>  
                                                         <div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-														<select class="chosen-select col-xs-12 col-sm-6" id="form-field-select-3" data-placeholder="Choose a State.1.." style="display: none;">
-															<option value="">  </option>
-															<option value="AL">Alabama</option>
-															<option value="AK">Alaska</option>
-															<option value="AZ">Arizona</option>
-															<option value="AR">Arkansas</option>
-															<option value="CA">California</option>
-															<option value="CO">Colorado</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="HI">Hawaii</option>
-															<option value="ID">Idaho</option>
-															<option value="IL">Illinois</option>
-															<option value="IN">Indiana</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI">Michigan</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="MT">Montana</option>
-															<option value="NE">Nebraska</option>
-															<option value="NV">Nevada</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NM">New Mexico</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="ND">North Dakota</option>
-															<option value="OH">Ohio</option>
-															<option value="OK">Oklahoma</option>
-															<option value="OR">Oregon</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="SD">South Dakota</option>
-															<option value="TN">Tennessee</option>
-															<option value="TX">Texas</option>
-															<option value="UT">Utah</option>
-															<option value="VT">Vermont</option>
-															<option value="VA">Virginia</option>
-															<option value="WA">Washington</option>
-															<option value="WV">West Virginia</option>
-															<option value="WI">Wisconsin</option>
-															<option value="WY">Wyoming</option>
-														</select>
-
+                                                            <div class="clearfix">
+                                                                <input type="text" name="text" id="appName" class="col-xs-12 col-sm-6" ng-model="newReceivePort.applicationName">
+                                                            </div>
                                                         </div>
-														</div>
-													</div>
-
-													<div class="space-2"></div>
-
-													<div class="form-group">
-														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="platform">Platform</label>
-
-														<div class="col-xs-12 col-sm-9">
-															<div class="clearfix">
-																<select class="input-medium" id="platform" name="platform">
-																	<option value="">------------------</option>
-																	<option value="linux">Linux</option>
-																	<option value="windows">Windows</option>
-																	<option value="mac">Mac OS</option>
-																	<option value="ios">iOS</option>
-																	<option value="android">Android</option>
-																</select>
-															</div>
-														</div>
-													</div>
-
-													<div class="space-2"></div>
+                                                    </div>
 
 
-													<div class="form-group">
-														<div class="col-xs-12 col-sm-4 col-sm-offset-3">
-															<label>
-																<input name="start" id="start" type="checkbox" class="ace" ng-model="newReceiveLocation.status">
-																<span class="lbl"> Start Receive Location On Create</span>
-															</label>
-														</div>
-													</div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Application Name:</label>
 
-                                                    <div class="btn btn-primary" ng-click="AssociateRL()">Associate</div>
-												</form>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <p>Selected: {{address.selected.formatted_address}}</p>
+                                                            <ui-select ng-model="address.selected" class="col-xs-12 col-sm-6"
+                                                                       theme="bootstrap"
+                                                                       ng-disabled="disabled"
+                                                                       reset-search-input="false">
+                                                                <match placeholder="Enter an address...">{{$select.selected.formatted_address}}</match>
+                                                                <choices repeat="address in addresses track by $index"
+                                                                         refresh="refreshAddresses($select.search)"
+                                                                         refresh-delay="0">
+                                                                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+                                                                </choices>
+                                                            </ui-select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Default</label>
+                                                        <div class="col-sm-6">
+                                                            <ui-select ng-model="person.selected" theme="bootstrap">
+                                                                <match placeholder="Select or search a person in the list...">{{$select.selected.name}}</match>
+                                                                <choices repeat="item in people | filter: $select.search">
+                                                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                                    <small ng-bind-html="item.email | highlight: $select.search"></small>
+                                                                </choices>
+                                                            </ui-select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">With a clear button</label>
+                                                        <div class="col-sm-6">
+                                                            <div class="input-group ">
+                                                                <ui-select ng-model="person.selected" theme="bootstrap">
+                                                                    <match placeholder="Select or search a person in the list...">{{$select.selected.name}}</match>
+                                                                    <choices repeat="item in people | filter: $select.search">
+                                                                        <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                                                        <small ng-bind-html="item.email | highlight: $select.search"></small>
+                                                                    </choices>
+                                                                </ui-select>
+                                                                <span class="input-group-btn">
+                                                                    <button ng-click="person.selected = undefined" class="btn btn-default">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">Receive Location Name:</label>
+
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" id="rlname" name="rlname" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.name">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="space-2"></div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone">Transport Type</label>
+                                                                <div class="col-xs-12 col-sm-6">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" id="trntype" name="trntype" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.transportType">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="space-2"></div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">Address URI:</label>
+
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" id="rladdress" name="rladdress" class="col-xs-12 col-sm-6" ng-model="newReceiveLocation.address">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="form-field-select-3">Chosen</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <select class="col-xs-12 col-sm-6" id="form-field-select-3" data-placeholder="Choose a State..." 
+                                                                                ng-model="newReceivePort.person" ng-options ="person.name for person in people">
+
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <p ng-repeat="person in people">{{person.name}}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="space-2"></div>
+
+                                                            <div class="form-group">
+                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="platform">Platform</label>
+
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <select class="input-medium" id="platform" name="platform">
+                                                                            <option value="">------------------</option>
+                                                                            <option value="linux">Linux</option>
+                                                                            <option value="windows">Windows</option>
+                                                                            <option value="mac">Mac OS</option>
+                                                                            <option value="ios">iOS</option>
+                                                                            <option value="android">Android</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="space-2"></div>
+
+
+                                                            <div class="form-group">
+                                                                <div class="col-xs-12 col-sm-4 col-sm-offset-3">
+                                                                    <label>
+                                                                        <input name="start" id="start" type="checkbox" class="ace" ng-model="newReceiveLocation.status">
+                                                                        <span class="lbl"> Start Receive Location On Create</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="btn btn-primary" ng-click="AssociateRL()" ng-disabled="rpForm.$invalid || isUnchanged(newReceivePort)">Associate</div>
+                                                </form>
 											</div>
 
 											<div class="step-pane" id="step2">

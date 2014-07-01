@@ -1,0 +1,17 @@
+﻿<div class="form-group" ng-class="{ 'has-info' : rpForm.rpName.$pristine,
+                                                                                        'has-error' : rpForm.rpName.$invalid && !rpForm.rpName.$pristine,
+                                                                                        'has-success' : rpForm.rpName.$valid && !rpForm.rpName.$pristine }">
+    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="rpName">Receive Port Name:</label>
+
+    <div class="col-xs-12 col-sm-5">
+        <span class="block input-icon input-icon-right">
+            <input type="text" id="rpName" name="rpName" class="width-100" ng-model="newReceivePort.name" required>
+            <i class="ace-icon fa fa-info-circle" ng-class="{ 'fa-info-circle' : rpForm.rpName.$pristine,
+                                                                                                                'fa-times-circle' : rpForm.rpName.$invalid && !rpForm.rpName.$pristine,
+                                                                                                                'fa-check-circle' : rpForm.rpName.$valid && !rpForm.rpName.$pristine }"></i>
+        </span>
+
+    </div>
+    <div class="help-block col-xs-12 col-sm-reset inlineblock" ng-show="rpForm.rpName.$pristine || rpForm.rpName.$error.required"> Port Name is Required</div>
+
+</div>
