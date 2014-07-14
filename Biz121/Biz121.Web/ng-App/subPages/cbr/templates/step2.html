@@ -1,0 +1,83 @@
+﻿<form class="form-horizontal" id="sp-form" name="spForm" method="get" novalidate="novalidate">
+    <!--<cnginput ng-model="newSendPort.name" form="spForm" elname="rpName"></cnginput>-->
+    <!--<pre>{{applications}} {{newSendPort}} {{spForm.$invalid}} </pre>-->
+         <div class="alert alert-warning">
+        <p><strong>Important!</strong>  This send port would subscribe to "Receive Port Name : <strong>{{newReceivePort.name}}</strong> "</p>
+										
+    </div>
+    
+    <div class="alert alert-danger" ng-show="errorMessage">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+	    <strong>
+		    <i class="ace-icon fa fa-times"></i>
+		    Oh snap!
+	    </strong> <br/>
+        {{errorMessage}}
+	    <br>
+	</div>
+
+    
+     <field ng-model="newSendPort.target" template="select" type="text" name="rpName" label="Select Destination" ng-options="x for x in ['SFTP','SAP']" required>
+           <validator key="required">Destination is Required</validator>
+    </field>
+
+    <div class="space-2"></div>
+
+    <field ng-model="newSendPort.name" type="text" name="spName" label="{{'SendPort' + ' Name'}}" required>
+           <validator key="required">SendPort Name is Required</validator>
+    </field>
+
+    <div class="space-2"></div>
+
+    <field ng-model="newSendPort.description" type="text" name="rpDesc" label="{{'SendPort' + ' Description'}}" optional="true"></field>
+
+    <div class="space-2"></div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3 no-padding-right" >Application</label>
+        <div class="col-xs-12 col-sm-9">
+            <div class="clearfix">
+                <select class="col-xs-12 col-sm-6" id="newSendPortApp1" data-placeholder="Choose a Application..."
+                        ng-model="newSendPort.applicationName" ng-options="a for a in applications" chosen  allow-single-deselect="true" required >
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="hr hr-dotted"></div>
+
+    <div class="space-2"></div>
+
+   
+    <field ng-model="newSendPort.address" type="text" name="rlAddress" label="Address URI" required>
+        <validator key="required">Address is Required</validator>
+    </field>
+
+    
+    <div class="space-2"></div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn btn-primary pull-right" ng-click="saveSP()" ng-disabled="spForm.$invalid || isUnchanged(newSendPort) ">Create</button>
+        </div>
+        
+        <div class="alert alert-success col-sm-6" ng-show="successMessage">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+
+            <strong>
+                <i class="ace-icon fa fa-check"></i>
+                Well done!
+            </strong>
+            You successfully created a Send Port -  <strong>{{newSendPort.name}} </strong>
+            <br/>
+        </div>
+        
+    </div>
+    <br/>
+
+</form>

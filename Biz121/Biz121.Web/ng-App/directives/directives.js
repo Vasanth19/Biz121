@@ -76,7 +76,7 @@ myDirectives.directive('cnginput', function($compile) {
 });
 
 
-myDirectives.directive('chosen', function () {
+myDirectives.directive('chosen1', function () {
     var linker = function (scope, element, attr) {
         scope.$watch('people', function() {
             element.trigger('liszt:updated');
@@ -84,8 +84,14 @@ myDirectives.directive('chosen', function () {
         element.chosen();
     };
 
+
+    var compiler = function (element, attr) {
+        element.chosen();
+    };
+
     return {
         restrict: "A",
-        link: linker
+        link: linker,
+        compile:compiler
     };
 });

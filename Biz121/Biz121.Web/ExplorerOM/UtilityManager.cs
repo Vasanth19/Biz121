@@ -15,15 +15,24 @@ namespace Biz121.Web.ExplorerOM
         public static void CreateSMTPSendPort(BtsCatalogExplorer root, FMR fmr)
         {
             root.ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
-            Application App = root.ReceivePorts[fmr.RPName].Application;
-            if (App == null)
+            Application App;
+            try
+            {
+                App = root.ReceivePorts[fmr.RPName].Application;
+                if (App == null)
+                {
+                    App = root.Applications["BizTalk Application 1"]; // Hardcoded default
+                }
+            }
+            catch
             {
                 App = root.Applications["BizTalk Application 1"]; // Hardcoded default
             }
+           
             SendPort sendPort = App.AddNewSendPort(false, false);
 
-            sendPort.Name = "Error_Email_For_" + fmr.SPName + "_And_" + fmr.RPName;
-            sendPort.Description = "CBR Fail Message Routing handle for Receive Port" + fmr.SPName + " Send port" + fmr.SPName;
+            sendPort.Name = "Error_Email_For_" + fmr.RPName + "_And_" + fmr.SPName;
+            sendPort.Description = "CBR Fail Message Routing handle for Receive Port" + fmr.RPName + " Send port" + fmr.SPName;
 
             sendPort.PrimaryTransport.TransportType = root.ProtocolTypes["SMTP"];
             sendPort.PrimaryTransport.Address = fmr.EmailInfo.To;
@@ -36,6 +45,18 @@ namespace Biz121.Web.ExplorerOM
             root.SaveChanges();
         }
 
-     
+
+
+        public static object GetApplications(BtsCatalogExplorer root)
+        {
+            root.ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
+
+            List<String> listApplications = new List<String>();
+            foreach (Application app in root.Applications)
+            {
+                listApplications.Add(app.Name);
+            }
+            return listApplications;
+        }
     }
 }

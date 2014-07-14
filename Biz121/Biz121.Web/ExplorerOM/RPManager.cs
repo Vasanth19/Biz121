@@ -97,11 +97,12 @@ namespace Biz121.Web.ExplorerOM
             //it will create a new receive location and add it to the receive       //port.
             receivePort.Name = port.Name;
             receivePort.Description = port.Description;
+            receivePort.RouteFailedMessage = true;
 
 
             foreach (BizRL rl in port.RLs)
             {
-                CreatedReceiveLocation(rl, receivePort, root);
+                CreateReceiveLocation(rl, receivePort, root);
             }
 
             //Try to commit the changes made so far. If the commit fails, 
@@ -109,7 +110,7 @@ namespace Biz121.Web.ExplorerOM
             root.SaveChanges();
             return true;
         }
-        private static void CreatedReceiveLocation(BizRL rl, ReceivePort receivePort, BtsCatalogExplorer root)
+        private static void CreateReceiveLocation(BizRL rl, ReceivePort receivePort, BtsCatalogExplorer root)
         {
             //Create a new receive location and add it to the receive port
             ReceiveLocation btsRL = receivePort.AddNewReceiveLocation();

@@ -1,0 +1,136 @@
+﻿<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="/">Home</a>
+        </li>
+        <li class="active">Send Ports</li>
+    </ul><!-- /.breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+                <i class="ace-icon fa fa-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- /.nav-search -->
+</div>
+
+<div class="page-content">
+		<div class="page-header">
+			<h1>
+				Send 
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+					 Ports
+				</small>
+			</h1>
+		</div><!-- /.page-header -->
+
+
+	   <div class="form-group">
+		   <label class="col-sm-3 control-label no-padding-right" style="text-align:right">Filter Results : </label>
+		   <div class="col-sm-9">
+			   <input type="text" ng-model="query" id="form-field-1" placeholder="Type Your Query" class="col-xs-10 col-sm-5">
+		   </div>
+	   </div>
+
+		<div class="hr hr32 hr-dotted"></div>
+		   <div class="hr hr-18 dotted hr-double"></div>
+
+
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<div class="row">
+					<div class="col-xs-12">
+						<table id="sample-table-1" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="center">
+										<label class="position-relative">
+											<input type="checkbox" class="ace">
+											<span class="lbl"></span>
+										</label>
+									</th>
+									<th><a href="" ng-click="order('name', false)"> Send Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
+									<th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
+									<th class="hidden-480">Transport Type</th>
+                                    <th>Details</th>
+
+								</tr>
+							</thead>
+
+							<tbody>
+							   <tr ng-repeat="sp in sendPorts | filter:query" >
+
+								 <td class="center">
+										<label class="position-relative">
+											<input type="checkbox" class="ace">
+											<span class="lbl"></span>
+										</label>
+									</td>
+
+									<td >
+										<b>{{sp.name}}</b>
+									</td>
+									<td>{{sp.applicationName}}</td>
+									<td>{{sp.transportType}} </td>
+                                   <td style="width:40%">
+                                        <div id="accordion{{$index}}" class="accordion-style1 panel-group no-margin " >
+										<div class="panel panel-default" >
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion{{$index}}" data-target="#collapse{{$index}}">
+														<i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+														&nbsp;Additional Details..&nbsp; 
+                                                        <span class="label label-danger arrowed-in pull-right" ng-hide="sp.status=='Started'">{{sp.status}}</span>
+                                                        <span class="label label-success arrowed pull-right" ng-show="sp.status=='Started'">{{sp.status}}</span>
+													</a>
+												</h4>
+											</div>
+
+											<div class="panel-collapse collapse" id="collapse{{$index}}">
+												<div class="panel-body">
+													<p> Description : {{sp.description}}</p>
+                                                    <p> Address : {{sp.address}}</p>
+                                                    <p> Retry Count : {{sp.retryCount}}</p>
+                                                    <p> Retry Interval : {{sp.retryInterval}}</p>
+                                                    <p> Pipeline Name : {{sp.pipelineName}}</p>
+                                                    <p>
+                                                        <div class="alert alert-success" ng-show="sp.filter">
+                                                            <button type="button" class="close" data-dismiss="alert">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </button>
+                                                            <strong>Send Port Filter</strong>
+                                                            {{sp.filter}}
+										                <br>
+                                                        </div>
+                                                       </p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+                                    </td>
+									 
+								</tr>
+
+								
+
+							</tbody>
+						</table>
+					</div><!-- /.span -->
+				</div><!-- /.row -->
+
+
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+

@@ -10,8 +10,8 @@
 
     <!-- bootstrap & fontawesome -->
     <link href="~/Content/themes/ace/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
+    @*<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">*@
+    <link href="~/Content/themes/ace/font-awesome.min.css" rel="stylesheet" />
     <!-- page specific plugin styles -->
     
     @RenderSection("styles", required:false)
@@ -25,7 +25,7 @@
 
     <link href="~/Content/themes/ace/ace-skins.min.css" rel="stylesheet" />
     <link href="~/Content/themes/ace/ace-rtl.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Scripts/Angular/ui-select/select.css">
+
     <link href="~/Content/Site.css" rel="stylesheet" />
 
     <!--[if lte IE 9]>
@@ -163,27 +163,23 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <!-- page specific plugin scripts -->
-
-    <script src="~/Scripts/Ace/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/Ace/jquery.dataTables.bootstrap.js"></script>
-
+    <span id="jqScripts"></span>
     @RenderSection("jqscripts", required:false)
 
 
     <script type="text/javascript" src="https://code.angularjs.org/1.2.9/angular.js"></script>
-        <script type="text/javascript" src="https://code.angularjs.org/1.2.9/angular-route.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.2.9/angular-route.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.js"></script>
 
     <!-- ace scripts -->
+    <span id="aceScripts"></span>
     <script src="~/Scripts/Ace/ace-elements.min.js"></script>
     <script src="~/Scripts/Ace/ace.min.js"></script>
 
+    <!-- Common Jquery Scritps -->
     <script src="~/Scripts/app.js"></script>
 
-    <!-- inline scripts related to this page -->
-    <script type="text/javascript">
-    </script>
-
-    @RenderSection("scripts", required: false)
+    <!-- Application Specific angular scripts -->
+    @RenderSection("ngscripts", required: false)
 </body>
 </html>

@@ -1,0 +1,70 @@
+﻿<form class="form-horizontal" id="fmr-form" name="fmrForm" method="get" novalidate="novalidate">
+	<!--<cnginput ng-model="newSendPort.name" form="spForm" elname="rpName"></cnginput>-->
+	<!--<pre>{{fmr}} </pre>-->
+		 <div class="alert alert-warning">
+		       <p> Failed Message Routing would be created for "Receive Port Name : <strong>{{newReceivePort.name}}</strong>" and  "Send Port Name : <strong>{{newSendPort.name}}</strong>" </p>
+										
+	</div>
+	
+	<div class="alert alert-danger" ng-show="errorMessage">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<strong>
+			<i class="ace-icon fa fa-times"></i>
+			Oh snap!
+		</strong> <br/>
+		{{errorMessage}}
+		<br>
+	</div>
+
+	
+	<div class="space-2"></div>
+	<field ng-model="fmr.emailInfo.to" type="text" name="emailTo" label="Email To" required>
+		   <validator key="required">To is Required</validator>
+	</field>
+
+    <div class="space-2"></div>
+    <field ng-model="fmr.emailInfo.from" type="text" name="emailFrom" label="Email From" required>
+        <validator key="required">From is Required</validator>
+    </field>
+
+     <div class="space-2"></div>
+    <field ng-model="fmr.emailInfo.subject" type="text" name="emailSubject" label="Email Subject"  required>
+        <validator key="required">Subject is Required</validator>
+    </field>
+
+     <div class="space-2"></div>
+    <field ng-model="fmr.emailInfo.body" type="text" template="textarea" name="emailBody" label="Email Body"  required>
+        <validator key="required">Body is Required</validator>
+    </field>
+
+    <div class="space-2"></div>
+    <field ng-model="fmr.emailInfo.host" type="text" name="emailHost" label="Email Host"  disabled optional="true">
+        <validator key="required">host is Required</validator>
+    </field>
+    
+	<div class="space-2"></div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<button class="btn btn-primary pull-right" ng-click="saveFMR()" ng-disabled="fmrForm.$invalid || isUnchanged(fmr) ">Create</button>
+		</div>
+		
+		<div class="alert alert-success col-sm-6" ng-show="successMessage">
+			<button type="button" class="close" data-dismiss="alert">
+				<i class="ace-icon fa fa-times"></i>
+			</button>
+
+			<strong>
+				<i class="ace-icon fa fa-check"></i>
+				Well done!
+			</strong>
+			You successfully created a Failed Message Routing </strong>
+			<br/>
+		</div>
+		
+	</div>
+	<br/>
+
+</form>

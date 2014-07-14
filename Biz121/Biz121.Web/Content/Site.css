@@ -1,5 +1,5 @@
-.chosen-container .chosen-container-single .chosen-container-active {
-  width: 300px;
+.chosen-container {
+  width: 300px!important;
 }
 .inlineblock {
   display: inline-block;

@@ -106,21 +106,39 @@
 
 @section jqscripts
 {
+    @* Specifc to CBR *@
+    <script src="~/Scripts/Ace/fuelux.wizard.min.js"></script>
+
+    <script src="~/Scripts/Ace/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/Ace/jquery.dataTables.bootstrap.js"></script>
+
     <script src="~/Scripts/Ace/jquery-ui.custom.min.js"></script>
     <script src="~/Scripts/Ace/jquery.ui.touch-punch.min.js"></script>
     <script src="~/Scripts/Ace/chosen.jquery.min.js"></script>
+
 }
 
-@section scripts
+@section ngscripts
 {
-<script src="~/Scripts/Angular/ui-select/select.js"></script>
-<script src="~/ng-App/directives/uiField.js"></script>
 
-<script src="~/ng-App/data/dataServices.js"></script>
-<script src="~/ng-App/directives/directives.js"></script>
-<script src="~/ng-App/js/filters.js"></script>
-<script src="~/ng-App/js/home-index.js"></script>
+    @* Angular Plugins  *@
+    <script src="~/ng-App/directives/chosen.js"></script>
+    <script src="~/ng-App/directives/uiField.js"></script>
 
+    @* Angular Common *@
+    <script src="~/ng-App/data/dataServices.js"></script>
+    <script src="~/ng-App/directives/directives.js"></script>
+    <script src="~/ng-App/js/filters.js"></script>
+
+     @* Controller related Scripts *@
+    <script src="~/ng-App/subPages/sendPorts/spController.js"></script>
+    <script src="~/ng-App/subPages/receivePorts/rpController.js"></script>
+    <script src="~/ng-App/subPages/cbr/cbrController.js"></script>
+
+    @* Module Related Scripts *@
+    <script src="~/ng-App/js/home-index.js"></script>
+
+   
 }
 
 

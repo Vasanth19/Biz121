@@ -1,18 +1,20 @@
 ﻿/// <reference path="../data/Gigs.js" />
 //1. Make controllers a object instrad of function for minimizing to work. Refer Shawn wildermuth Course 8.11 minification.
 
-var homeIndexModule = angular.module("homeIndex", ["ngRoute", "ngSanitize", "myDataService", "myDirectives", "myFilters", "field-directive", "ui.select"]);
+var homeIndexModule = angular.module("homeIndex", ["ngRoute", "ngSanitize", "myDataService", "myDirectives", "myFilters", "field-directive", "localytics.directives"]);
 
 
 homeIndexModule.config(function($routeProvider) {
-    $routeProvider.when("/", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
-    $routeProvider.when("/RP", { controller: "receivePortsController", templateUrl: "/ng-App/templates/receivePorts.html" });
+    $routeProvider.when("/", { controller: "rpController", templateUrl: "/ng-App/subPages/receivePorts/receivePorts.html" });
+    $routeProvider.when("/RP", { controller: "rpController", templateUrl: "/ng-App/subPages/receivePorts/receivePorts.html" });
+    $routeProvider.when("/cbrf", { controller: "cbrController", templateUrl: "/ng-App/subPages/cbr/cbr_full.html" });
+    $routeProvider.when("/cbr", { controller: "cbrController", templateUrl: "/ng-App/subPages/cbr/cbr.html" });
+    $routeProvider.when("/sendports", { controller: "spController", templateUrl: "/ng-App/subPages/sendPorts/sendPorts.html" });
 
-    $routeProvider.when("/applications", { controller: "dashboardController", templateUrl: "/ng-App/templates/applications.html" });
-    $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "/ng-App/templates/dashboard.html" });
-    $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "/ng-App/templates/singleAppView.html" });
-    $routeProvider.when("/cbr", { controller: "newCBRController", templateUrl: "/ng-App/templates/CBR.html" });
-    $routeProvider.when("/sendports", { controller: "sendPortsController", templateUrl: "/ng-App/templates/sendPorts.html" });
+    $routeProvider.when("/applications", { controller: "dashboardController", templateUrl: "/ng-App/subPages/applications.html" });
+    $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "/ng-App/subPages/dashboard.html" });
+    $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "/ng-App/subPages/singleAppView.html" });
+
 
 
     $routeProvider.otherwise({ redirectTo: "/" });
@@ -32,134 +34,9 @@ function handleError(status)
 
 
 function dashboardController($scope, $http, dataService) {
-
     
 }
 
-
-function receivePortsController($scope, $http, dataService, $filter) {
-
-    $scope.isBusy = true;
-    var orderBy = $filter('orderBy');
-
-    $scope.order = function (predicate, reverse) {
-        $scope.receivePorts = orderBy($scope.receivePorts, predicate, reverse);
-    };
-
-    $scope.receivePorts = [];
-
-    if (dataService.IsRPReady() == false) {
-        dataService.getRPs()
-       .then(function (_rps) {
-           //Success
-           $scope.receivePorts = _rps;
-           console.log($scope.receivePorts);
-       }, function (status) { //Error
-           handleError(status);
-           console.log("Error Occured while fetching Receive Ports " + status);
-
-       });
-    }
-    else {
-        $scope.receivePorts = dataService.rps;
-    }
-}
-
-function sendPortsController($scope, $http, dataService, $filter) {
-
-    $scope.isBusy = true;
-    var orderBy = $filter('orderBy');
-
-    $scope.order = function (predicate, reverse) {
-        $scope.sendPorts = orderBy($scope.sendPorts, predicate, reverse);
-    };
-
-    $scope.sendPorts = [];
-
-    if (dataService.IsSPReady() == false) {
-        dataService.getSPs()
-       .then(function (_sps) {
-           //Success
-           $scope.sendPorts = _sps;
-       }, function () { //Error
-           handleError(status);
-           console.log("Error Occured while fetching Send Ports " + status);
-       });
-    }
-    else {
-        $scope.sendPorts = dataService.sps;
-    }
-}
-
-function newCBRController($scope, $http, $location, dataService) {
-    $scope.master = {};
-    $scope.newReceivePort = {};
-    $scope.newReceiveLocation = {};
-
-    $scope.address = {};
-    $scope.refreshAddresses = function (address) {
-        var params = { address: address, sensor: false };
-        return $http.get(
-          'http://maps.googleapis.com/maps/api/geocode/json',
-          { params: params }
-        ).then(function (response) {
-            $scope.addresses = response.data.results;
-        });
-    };
-
-
-    $scope.url = '/ng-App/data/people.json';
-    $scope.person = {};
-    $scope.people = [
-      { id: 0, name: 'Adam', email: 'adam@email.com', age: 10 },
-      { id: 1, name: 'Amalie', email: 'amalie@email.com', age: 12 },
-      { id: 2, name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
-      { id: 3, name: 'Samantha', email: 'samantha@email.com', age: 31 },
-      { id: 4, name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
-      { id: 5, name: 'Natasha', email: 'natasha@email.com', age: 54 },
-      { id: 6, name: 'Nicole', email: 'nicole@email.com', age: 43 },
-      { id: 7, name: 'Adrian', email: 'adrian@email.com', age: 21 }
-    ];
-
-    $scope.fetchPeople = function() {
-        $http.get($scope.url).then(function(result) {
-            $scope.people = result.data;
-        }
-        ,
-         function (result) {
-             console.log("people fetch failed");
-         });
-    };
-    //$scope.fetchPeople();
-
-    $scope.$watch('newReceiveLocation', function () {
-        console.log('hey, myVar has changed!');
-    });
-
-    $scope.AssociateRL = function() {
-        $scope.newReceivePort.rLs = [];
-        $scope.newReceivePort.rLs.push($scope.newReceiveLocation);
-        console.log($scope.newReceivePort.rLs);
-
-    };
-
-    $scope.isUnchanged = function (rp) {
-        return angular.equals(rp, $scope.master);
-    };
-
-    $scope.save = function() {
-        dataService.addTopic($scope.newReceivePort).then(function () {
-            //Success
-            $location.path("#/");
-        }, function() {
-            //Error
-            console.log("Error Occured while daving topic");
-        });
-
-
-    };
-
-}
 
 function singleAppController($scope, dataService, $routeParams, $location) {
 

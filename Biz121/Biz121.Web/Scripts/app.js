@@ -1,4 +1,15 @@
 ﻿jQuery(function ($) {
+    //Custom Functions
+    var AddPageSpecificScript = function (section, src) {
+        var jqscript = document.getElementById(section);
+        var js = document.createElement('script');
+        js.setAttribute('src', src);
+        jqscript.parentNode.insertBefore(js, jqscript);
+
+    };
+    // AddPageSpecificScript('jqScripts', "/Scripts/Ace/fuelux.wizard.min.js");
+
+
     //Custom code to trigger sidebar
     $('#sidebar ul li').click(function (e) {
        // e.preventDefault(); //prevent the link from being followed

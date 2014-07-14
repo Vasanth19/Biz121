@@ -1,0 +1,153 @@
+﻿<div ng-include="'ng-App/subpages/cbr/templates/breadCrumb.html'"></div>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Context Based Routing
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                with Failed Message Routing
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <div class="widget-box">
+                <div class="widget-header widget-header-blue widget-header-flat">
+                    <h4 class="widget-title lighter">CBR Wizard</h4>
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <div id="fuelux-wizard" data-target="#step-container">
+                            <ul class="wizard-steps">
+                                <li data-target="#step1" class="active">
+                                    <span class="step">1</span>
+                                    <span class="title">Create Receive Port</span>
+                                </li>
+
+                                <li data-target="#step2" class="">
+                                    <span class="step">2</span>
+                                    <span class="title">Create Send Port</span>
+                                </li>
+
+                                <li data-target="#step3" class="">
+                                    <span class="step">3</span>
+                                    <span class="title">Configure Failed Message Routing</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr>
+
+                        <div class="step-content pos-rel" id="step-container">
+                            <div class="step-pane active" id="step1">
+                                <!--http://scotch.io/tutorials/javascript/angularjs-form-validation-->
+                                <div ng-include="'ng-App/subpages/cbr/templates/step1.html'"></div>
+                            </div>
+
+                            <div class="step-pane" id="step2">
+                              <div ng-include="'ng-App/subpages/cbr/templates/step2.html'"></div>
+                            </div>
+
+                            <div class="step-pane" id="step3">
+                                <div ng-include="'ng-App/subpages/cbr/templates/fmr.html'"></div>
+                            </div>
+
+                        </div>
+
+                        <hr>
+                        <div class="wizard-actions">
+                            <button class="btn btn-prev" disabled="disabled">
+                                <i class="ace-icon fa fa-arrow-left"></i>
+                                Prev
+                            </button>
+
+                            <button class="btn btn-success btn-next" data-last="Finish" ng-click="resetOnNext()" ng-disabled="!successMessage" >
+                                Next
+												
+                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i></button>
+                        </div>
+                    </div><!-- /.widget-main -->
+                </div><!-- /.widget-body -->
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.2.0/bootbox.min.js"></script>
+<script type="text/javascript">
+    jQuery(function($) {
+
+        //var AddPageSpecificScript = function (section, src) {
+        //    var jqscript = document.getElementById(section);
+        //    var js = document.createElement('script');
+        //    js.setAttribute('src', src);
+        //    jqscript.parentNode.insertBefore(js, jqscript);
+
+        //};
+
+        // AddPageSpecificScript('jqScripts', "/Scripts/Ace/fuelux.wizard.min.js");
+        //AddPageSpecificScript('jqScripts', "/Scripts/Ace/jquery-ui.custom.min.js");
+        //AddPageSpecificScript('jqScripts', "/Scripts/Ace/jquery.ui.touch-punch.min.js");
+        //AddPageSpecificScript('jqScripts', "/Scripts/Ace/chosen.jquery.min.js");
+        // AddPageSpecificScript('aceScripts', "/Scripts/Ace/ace-elements.min.js");
+
+
+        var $validation = false;
+        $('#fuelux-wizard')
+            .ace_wizard({
+                //step: 2 //optional argument. wizard will jump to step "2" at first
+                
+            })
+            .on('change', function(e, info) {
+                if (info.step == 1 && $validation) {
+                    if (!$('#rp-form').valid()) return false;
+                    if (!$('#sp-form').valid()) return false;
+                }
+            })
+            .on('finished', function(e) {
+                bootbox.dialog({
+                    message: "Thank you! Your information was successfully saved!",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+                });
+            }).on('stepclick', function(e) {
+                //e.preventDefault();//this will prevent clicking and selecting steps
+            });
+
+        //jump to a step
+        $('#step-jump').on('click', function() {
+            var wizard = $('#fuelux-wizard').data('wizard');
+            wizard.currentStep = 3;
+            wizard.setState();
+        }); //hide or show the other form which requires validation
+        //this is for demo only, you usullay want just one form in your application
+        $('#skip-validation').removeAttr('checked').on('click', function() {
+            $validation = this.checked;
+            if (this.checked) {
+                $('#sample-form').hide();
+                $('#rp-form').removeClass('hide');
+            } else {
+                $('#rp-form').addClass('hide');
+                $('#sample-form').show();
+            }
+        });
+        
+        //resize the chosen on window resize
+        $(window).on('resize.chosen', function() {
+            var w = $('.chosen-select').parent().width() * 0.6;
+            $('.chosen-select').next().css({ 'width': w });
+        }).trigger('resize.chosen');
+
+    });
+</script>

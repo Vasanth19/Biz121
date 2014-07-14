@@ -1,0 +1,114 @@
+﻿<form class="form-horizontal" id="rp-form" name="rpForm" method="get" novalidate="novalidate">
+    <!--<cnginput ng-model="newReceivePort.name" form="rpForm" elname="rpName"></cnginput>-->
+    <!--<pre>{{applications}} {{newReceivePort}} {{rpForm.$invalid}} {{newReceiveLocation}}</pre>-->
+     <div class="alert alert-warning">
+       <p> <strong>Important Info!</strong> Receive Port Name : <strong>{{newReceivePort.name}}</strong> |    Receive Location Name : <strong>{{newReceiveLocation.name}}</strong></p>
+										
+    </div>
+    
+    <div class="alert alert-danger" ng-show="errorMessage">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+	    <strong>
+		    <i class="ace-icon fa fa-times"></i>
+		    Oh snap!
+	    </strong> <br/>
+        {{errorMessage}}
+	    <br>
+	</div>
+
+    
+     <field ng-model="newReceivePort.source" template="select" type="text" name="rpSource" label="Select Source" ng-options="x for x in ['SFTP','SAP']" required>
+           <validator key="required">Source is Required</validator>
+    </field>
+
+    <div class="space-2"></div>
+
+    <field ng-model="newReceivePort.interfaceName" type="text" name="rpName" label="{{'Interface' + ' Name'}}" required>
+           <validator key="required">Interface Name is Required</validator>
+    </field>
+
+    <div class="space-2"></div>
+
+    <field ng-model="newReceivePort.description" type="text" name="rpDesc" label="{{'ReceivePort' + ' Description'}}" placeholder="What ever you wish to write.." optional="true"></field>
+
+    <div class="space-2"></div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="form-field-select-3">Application</label>
+        <div class="col-xs-12 col-sm-9">
+            <div class="clearfix">
+                <select class="col-xs-12 col-sm-6" id="rpAppSelect" data-placeholder="Choose a Application..."
+                        ng-model="newReceivePort.applicationName" ng-options="a for a in applications"
+                        chosen allow-single-deselect="true" required>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Receive Location Details -->
+    <div class="hr hr-dotted"></div>
+
+    <div class="space-2"></div>
+  
+    <field ng-model="newReceiveLocation.address" type="text" name="rlAddress" label="Address URI" required>
+        <validator key="required">Address is Required</validator>
+    </field>
+
+
+
+    <!--     Code used for debugging Chosen                   <pre>{{newReceivePort.applicationName}}</pre>
+                                        <div class="hr hr-dotted"></div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="form-field-select-3">Application</label>
+                                            <div class="col-xs-12 col-sm-9">
+                                                <div class="clearfix">
+                                                    <select class="col-xs-12 col-sm-6" id="form-field-select-3" data-placeholder="Choose a Application..." 
+                                                            ng-model="newReceivePort.applicationName" ng-options ="person.name as person.name for person in people" 
+                                                            chosen allow-single-deselect="true">
+                                                        <option value=""></option>
+                                                    </select>
+
+                                                </div>
+                                                                    
+                                            </div>
+                                        </div>-->
+
+    
+    <div class="space-2"></div>
+
+
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-3">
+            <label>
+                <input name="start" id="start" type="checkbox" class="ace" ng-model="newReceiveLocation.status">
+                <span class="lbl">Start Receive Location On Create</span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn btn-primary pull-right" ng-click="saveRP()" ng-disabled="rpForm.$invalid || isUnchanged(newReceivePort) ">Create</button>
+        </div>
+        
+        <div class="alert alert-success col-sm-6" ng-show="successMessage">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+
+            <strong>
+                <i class="ace-icon fa fa-check"></i>
+                Well done!
+            </strong>
+            You successfully created a Receive Port -  <strong>{{newReceiveLocation.name}} </strong>
+            <br/>
+        </div>
+        
+    </div>
+    <br/>
+
+</form>
