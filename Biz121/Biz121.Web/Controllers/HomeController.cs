@@ -11,6 +11,7 @@ namespace Biz121.Web.Controllers
     {
         public ActionResult Index()
         {
+            string user = User.Identity.Name;
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();

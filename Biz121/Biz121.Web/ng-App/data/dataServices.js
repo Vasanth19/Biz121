@@ -82,7 +82,25 @@ dataServiceModule.factory("dataService", function ($http, $q) {
         return deferred.promise;
     };
 
-    //Post functions
+    var _logs = [];
+    var _getLogs = function () {
+
+        var deferred = $q.defer();
+        $http.get("http://hqdwesb03/elog/api/logquery") 
+        //$http.get("http://localhost:5724/api/logs")
+            .then(function (result) {
+                //Success
+                angular.copy(result.data, _logs);
+              deferred.resolve(_logs);
+            },
+                function (result) {
+                    deferred.reject(result.status);
+                }
+            );
+        return deferred.promise;
+    };
+
+    //#region Post functions
 
     var _addRP = function (newRP) {
 
@@ -132,7 +150,8 @@ dataServiceModule.factory("dataService", function ($http, $q) {
         return deferred.promise;
     };
 
-    
+    //#endregion 
+
     return {
         //rps
         IsRPReady: _isRPReady,
@@ -148,6 +167,9 @@ dataServiceModule.factory("dataService", function ($http, $q) {
         IsInitDataReady: _isInitDataReady,
         apps: _apps,
         getApps: _getApps,
+
+        logs: _logs,
+        getLogs:_getLogs,
         
         //Post
         addRP: _addRP,

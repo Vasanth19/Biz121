@@ -1,11 +1,13 @@
 ﻿<form class="form-horizontal" id="rp-form" name="rpForm" method="get" novalidate="novalidate">
     <!--<cnginput ng-model="newReceivePort.name" form="rpForm" elname="rpName"></cnginput>-->
     <!--<pre>{{applications}} {{newReceivePort}} {{rpForm.$invalid}} {{newReceiveLocation}}</pre>-->
-     <div class="alert alert-warning">
+   <!--  <div class="alert alert-warning">
        <p> <strong>Important Info!</strong> Receive Port Name : <strong>{{newReceivePort.name}}</strong> |    Receive Location Name : <strong>{{newReceiveLocation.name}}</strong></p>
 										
-    </div>
+    </div>-->
+
     
+
     <div class="alert alert-danger" ng-show="errorMessage">
 		<button type="button" class="close" data-dismiss="alert">
 			<i class="ace-icon fa fa-times"></i>
@@ -90,12 +92,25 @@
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-sm-4">
-            <button class="btn btn-primary pull-right" ng-click="saveRP()" ng-disabled="rpForm.$invalid || isUnchanged(newReceivePort) ">Create</button>
-        </div>
+    <div class="hr hr-dotted"></div>
+        <div class="form-group ">
         
-        <div class="alert alert-success col-sm-6" ng-show="successMessage">
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-2">
+            <div class="well" for="">
+            <p>
+            <strong class="align-center">Important  - Confirm!</strong>  <br/>
+                Receive Port Name : <strong>{{newReceivePort.name}}</strong><br/>
+                Receive Location Name : <strong>{{newReceiveLocation.name}}</strong><br/>
+                Receive Adapter Type : <strong>{{newReceiveLocation.transportType}}</strong><br/>
+                Receive Location Address : <strong>{{newReceiveLocation.address}}</strong><br/>
+            </p>
+        </div>
+            <button class="btn btn-primary pull-right" ng-click="saveRP()" ng-disabled="rpForm.$invalid || isUnchanged(newReceivePort) || sucessMessage ">Create</button>
+        </div>
+    </div>        
+        <div class="alert alert-success col-sm-12" ng-show="successMessage">
             <button type="button" class="close" data-dismiss="alert">
                 <i class="ace-icon fa fa-times"></i>
             </button>
@@ -104,11 +119,11 @@
                 <i class="ace-icon fa fa-check"></i>
                 Well done!
             </strong>
-            You successfully created a Receive Port -  <strong>{{newReceiveLocation.name}} </strong>
+            You successfully created a Receive Port with Location -  <strong>{{newReceiveLocation.name}} </strong>
             <br/>
         </div>
         
-    </div>
+
     <br/>
 
 </form>

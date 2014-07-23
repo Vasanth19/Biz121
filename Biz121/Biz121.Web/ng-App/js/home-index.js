@@ -5,15 +5,16 @@ var homeIndexModule = angular.module("homeIndex", ["ngRoute", "ngSanitize", "myD
 
 
 homeIndexModule.config(function($routeProvider) {
-    $routeProvider.when("/", { controller: "rpController", templateUrl: "/ng-App/subPages/receivePorts/receivePorts.html" });
-    $routeProvider.when("/RP", { controller: "rpController", templateUrl: "/ng-App/subPages/receivePorts/receivePorts.html" });
-    $routeProvider.when("/cbrf", { controller: "cbrController", templateUrl: "/ng-App/subPages/cbr/cbr_full.html" });
-    $routeProvider.when("/cbr", { controller: "cbrController", templateUrl: "/ng-App/subPages/cbr/cbr.html" });
-    $routeProvider.when("/sendports", { controller: "spController", templateUrl: "/ng-App/subPages/sendPorts/sendPorts.html" });
+    $routeProvider.when("/", { controller: "rpController", templateUrl: "ng-App/subPages/receivePorts/receivePorts.html" });
+    $routeProvider.when("/RP", { controller: "rpController", templateUrl: "ng-App/subPages/receivePorts/receivePorts.html" });
+    $routeProvider.when("/cbrf", { controller: "cbrController", templateUrl: "ng-App/subPages/cbr/cbr_full.html" });
+    $routeProvider.when("/cbr", { controller: "cbrController", templateUrl: "ng-App/subPages/cbr/cbr.html" });
+    $routeProvider.when("/sendports", { controller: "spController", templateUrl: "ng-App/subPages/sendPorts/sendPorts.html" });
+    $routeProvider.when("/logs", { controller: "logController", templateUrl: "ng-App/subPages/viewLogs/viewLogs.html" });
 
-    $routeProvider.when("/applications", { controller: "dashboardController", templateUrl: "/ng-App/subPages/applications.html" });
-    $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "/ng-App/subPages/dashboard.html" });
-    $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "/ng-App/subPages/singleAppView.html" });
+    $routeProvider.when("/applications", { controller: "dashboardController", templateUrl: "ng-App/subPages/applications.html" });
+    $routeProvider.when("/dashboard", { controller: "dashboardController", templateUrl: "ng-App/subPages/dashboard.html" });
+    $routeProvider.when("/application/:appName", { controller: "singleAppController", templateUrl: "ng-App/subPages/singleAppView.html" });
 
 
 

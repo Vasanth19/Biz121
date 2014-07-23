@@ -56,7 +56,7 @@ myDirectives.directive('cnginput', function($compile) {
     return {
         restrict: "AE",
         replace: true,
-        templateUrl: "/ng-App/_partials/cngInput.html",
+        templateUrl: "ng-App/_partials/cngInput.html",
         scope:
         {},
         require: 'ngModel',

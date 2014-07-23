@@ -143,6 +143,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AdminController.cs" />
     <Compile Include="Api\SPController.cs" />
     <Compile Include="Api\RPController.cs" />
     <Compile Include="Api\Test\TestRPController.cs" />
@@ -239,6 +240,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -246,6 +248,11 @@
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\themes\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\themes\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\themes\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\themes\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\themes\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\LocalIIS.pubxml" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Images\userImage.jpg" />
     <Content Include="ng-App\data\dataServices-Reference.js" />
@@ -264,6 +271,8 @@
     <Content Include="ng-App\subPages\cbr\templates\fmr.html" />
     <Content Include="ng-App\subPages\cbr\templates\step2.html" />
     <Content Include="ng-App\subPages\cbr\templates\step1.html" />
+    <Content Include="ng-App\subPages\viewLogs\viewLogs.html" />
+    <Content Include="ng-App\subPages\viewLogs\logController.js" />
     <Content Include="ng-App\subPages\receivePorts\rpController.js" />
     <Content Include="ng-App\subPages\receivePorts\receivePorts.html" />
     <Content Include="ng-App\subPages\dashboard.html" />
@@ -358,7 +367,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>55381</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53622/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

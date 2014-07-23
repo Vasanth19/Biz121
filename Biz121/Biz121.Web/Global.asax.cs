@@ -24,14 +24,14 @@ namespace Biz121.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            GlobalConfiguration.Configuration.EnsureInitialized();
+
+        }
+
+        protected void Application_AuthorizeRequest(object sender, EventArgs e)
+        {
             //Custom Role Provider
             AuthorizationConfig.Initialize();
-
-            GlobalConfiguration.Configuration.EnsureInitialized();
-            
-            
-       
-
         }
     }
 }

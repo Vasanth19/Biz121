@@ -1,11 +1,11 @@
 ﻿<form class="form-horizontal" id="sp-form" name="spForm" method="get" novalidate="novalidate">
     <!--<cnginput ng-model="newSendPort.name" form="spForm" elname="rpName"></cnginput>-->
     <!--<pre>{{applications}} {{newSendPort}} {{spForm.$invalid}} </pre>-->
-         <div class="alert alert-warning">
-        <p><strong>Important!</strong>  This send port would subscribe to "Receive Port Name : <strong>{{newReceivePort.name}}</strong> "</p>
-										
-    </div>
-    
+    <!--<div class="alert alert-warning">
+            <p><strong>Important!</strong>  This send port would subscribe to "Receive Port Name : <strong>{{newReceivePort.name}}</strong> "</p>
+        </div>
+        -->
+
     <div class="alert alert-danger" ng-show="errorMessage">
 		<button type="button" class="close" data-dismiss="alert">
 			<i class="ace-icon fa fa-times"></i>
@@ -60,11 +60,22 @@
     <div class="space-2"></div>
 
     <div class="row">
-        <div class="col-sm-4">
+                <div class="col-sm-6 col-sm-offset-2">
+            <div class="well" for="">
+            <p>
+            <strong class="align-center">Important  - Confirm!</strong>  <br/>
+                Send Port Name : <strong>{{newSendPort.name}}</strong><br/>
+                Send Adapter Type : <strong>{{newSendPort.transportType}}</strong><br/>
+                Send Port Address : <strong>{{newSendPort.address}}</strong><br/>
+                Subscribe to Receive Port : <strong>{{newSendPort.subscribeToRP}}</strong><br/>
+            </p>
+         </div>
             <button class="btn btn-primary pull-right" ng-click="saveSP()" ng-disabled="spForm.$invalid || isUnchanged(newSendPort) ">Create</button>
         </div>
-        
-        <div class="alert alert-success col-sm-6" ng-show="successMessage">
+      
+    </div>
+
+    <div class="alert alert-success col-sm-12" ng-show="successMessage">
             <button type="button" class="close" data-dismiss="alert">
                 <i class="ace-icon fa fa-times"></i>
             </button>
@@ -76,8 +87,6 @@
             You successfully created a Send Port -  <strong>{{newSendPort.name}} </strong>
             <br/>
         </div>
-        
-    </div>
     <br/>
 
 </form>

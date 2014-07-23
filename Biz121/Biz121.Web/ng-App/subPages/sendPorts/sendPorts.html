@@ -52,12 +52,7 @@
 						<table id="sample-table-1" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th class="center">
-										<label class="position-relative">
-											<input type="checkbox" class="ace">
-											<span class="lbl"></span>
-										</label>
-									</th>
+									
 									<th><a href="" ng-click="order('name', false)"> Send Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
 									<th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
 									<th class="hidden-480">Transport Type</th>
@@ -69,19 +64,13 @@
 							<tbody>
 							   <tr ng-repeat="sp in sendPorts | filter:query" >
 
-								 <td class="center">
-										<label class="position-relative">
-											<input type="checkbox" class="ace">
-											<span class="lbl"></span>
-										</label>
-									</td>
-
-									<td >
+								 
+									<td style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 300px;">
 										<b>{{sp.name}}</b>
 									</td>
 									<td>{{sp.applicationName}}</td>
-									<td>{{sp.transportType}} </td>
-                                   <td style="width:40%">
+									<td  class="hidden-480">{{sp.transportType}} </td>
+                                   <td style="min-width:350px;max-width:400px">
                                         <div id="accordion{{$index}}" class="accordion-style1 panel-group no-margin " >
 										<div class="panel panel-default" >
 											<div class="panel-heading">

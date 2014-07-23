@@ -8,7 +8,7 @@
             <i class="ace-icon fa fa-home home-icon"></i>
             <a href="/">Home</a>
         </li>
-        <li class="active">Receive Ports & Locations</li>
+        <li class="active">View Logs</li>
     </ul><!-- /.breadcrumb -->
 
     <div class="nav-search" id="nav-search">
@@ -26,10 +26,10 @@
 
         <div class="page-header">
             <h1>
-                Receive 
+                View Logs
                 <small>
                     <i class="ace-icon fa fa-angle-double-right"></i>
-                     Ports &amp; Locations
+                     &amp; Some Useful Information
                 </small>
             </h1>
         </div><!-- /.page-header -->
@@ -53,60 +53,48 @@
                         <table id="sample-table-1" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th class="center">
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace">
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </th>
-                                    <th><a href="" ng-click="order('name', false)"> Receive Port Name</a> (<a href="" ng-click="order('-name',false)">^</a>)</th>
-                                    <th><a href="" ng-click="order('applicationName', reverse)"> Application Name</a> (<a href="" ng-click="order('-applicationName',false)">^</a>)</th>
-                                    <th class="hidden-480 " style="display:none">Primary RL</th>
-                                    <th>
-                                        <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                        Receive Location(s)
+                                   
+                                    <th style="width: 100px!important"><a href="" ng-click="order('AppId', false)"> App Id</a> (<a href="" ng-click="order('-AppId',false)">^</a>)</th>
+                                    <th style="width: 10%"><a href="" ng-click="order('Module', reverse)"> Module </a> (<a href="" ng-click="order('-Module',false)">^</a>)</th>
+                                    <th style="width: 10%">Created</th>
+                                    <th style="width: 20%">Message</th>
+                                    <th style="width: 25%">Description</th>
+                                    <th style="width: 25%" class="hidden-480">
+                                        <i class="ace-icon fa fa-clock-o bigger-110 "></i>
+                                       Additional Info
                                     </th>
 
                                 </tr>
                             </thead>
 
                             <tbody>
-                               <tr ng-repeat="rp in receivePorts | filter:query" >
+                               <tr ng-repeat="log in logs | filter:query" >
 
-                                 <td class="center" >
-                                        <label class="position-relative">
-                                            <input type="checkbox" class="ace">
-                                            <span class="lbl"></span>
-                                        </label>
+                                
+                                    <td class="tdcolumn">
+									    <b >{{log.AppId }}</b>
                                     </td>
-
-                                    <td style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 350px;word-wrap: break-word;" >
-									    <b >{{rp.name }}</b>
-                                    </td>
-                                    <td>{{rp.applicationName}}</td>
-                                    <td style="display:none">{{rp.primaryRL | limitTo:50}} </td>
-
-                                     <td style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 410px;">
+                                   <td class="tdcolumn">{{log.Module}}</td>
+                                   <td>{{log.Created | date:'MM/dd/yyyy @ h:mma'}} </td>
+                                    <td>{{log.Message}} </td>
+                                   <td style="max-width: 30%;">{{log.Description}} </td>
+                                     <td class="hidden-480" style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 410px;word-wrap:break-word">
                                         <div id="accordionRP{{$index}}" class="accordion-style1 panel-group no-margin " >
-										<div class="panel panel-default"  ng-repeat="rl in rp.rLs">
+										<div class="panel panel-default" >
 											<div class="panel-heading">
 												<h4 class="panel-title">
 													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionRP{{$parent.$index}}" data-target="#collapse{{$parent.$index}}{{$index}}">
 														<i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
-														&nbsp;{{rl.name }} &nbsp; 
-                                                        <span class="label label-danger arrowed-in pull-right" ng-hide="rl.status">Stopped</span>
-                                                        <span class="label label-success arrowed pull-right" ng-show="rl.status">Enabled</span>
+														&nbsp; Additional Info&nbsp; 
+                                                       
 													</a>
 												</h4>
 											</div>
 
 											<div class="panel-collapse collapse" id="collapse{{$parent.$index}}{{$index}}">
 												<div class="panel-body">
-													<p> TransPort Type : {{rl.transportType}}</p>
-                                                    <p style="overflow-wrap: break-word;overflow-x: visible"> Address : {{rl.address}}</p>
-                                                    <p> Retry Count : {{rl.retryCount}}</p>
-                                                    <p> Retry Interval : {{rl.retryInterval}}</p>
-                                                    <p> Pipeline Name : {{rl.pipelineName}}</p>
+													<p> {{log.AdditionalInfo}}</p>
+                                               
 												</div>
 											</div>
 										</div>

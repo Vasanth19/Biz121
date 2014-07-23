@@ -29,7 +29,7 @@ namespace Biz121.Web.ExplorerOM
             }
             return listPorts;
         }
-        internal static BizSP GetSendPort(BtsCatalogExplorer root, string spName)
+        public static BizSP GetSendPort(BtsCatalogExplorer root, string spName)
         {
             root.ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
             SendPort sp = root.SendPorts[spName];
@@ -85,7 +85,8 @@ namespace Biz121.Web.ExplorerOM
             sendPort.PrimaryTransport.Address = port.Address;
             sendPort.SendPipeline = root.Pipelines[port.PipelineName];
             sendPort.RouteFailedMessage = true;
-            sendPort.Filter = port.SubscribeToRP.Filters_AddRP();
+            if (!String.IsNullOrEmpty(port.SubscribeToRP))
+                sendPort.Filter = port.SubscribeToRP.Filters_AddRP();
 
             sendPort.Status = PortStatus.Started;
             root.SaveChanges();

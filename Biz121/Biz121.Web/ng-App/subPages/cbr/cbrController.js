@@ -21,18 +21,42 @@
     //#endregion 
 
     //#region RP Variables and methods
-    $scope.newReceivePort = {
-        "interfaceName": "ESSBase_File_From_SAP",
-        "description": "",
-        "applicationName": "",
-        "name": "RP_ESSBase_File_From_SAP"
-    };
-    $scope.newReceiveLocation = {
-        "name": "",
-        "transportType": "",
-        "address": "C:\\BizTalkFolders\\FileTransfer\\In\\*.1t"
+    $scope.newReceivePort = {};
+    $scope.newReceiveLocation = {};
 
-    };
+    function populatePrimeDataRP() {
+        if ($scope.newReceivePort.source === "SAP") {
+
+            $scope.newReceivePort = {
+                "interfaceName": "[[NAME_OF_FILE]]_From_SAP",
+                "applicationName": "",
+                "source": "SAP"
+        };
+
+            $scope.newReceiveLocation = {
+                "transportType": "FILE",
+                "address": "\\\\Hqtnas01\\SAP_DE1\\Int\\[[INT_NAME]]\\out\\*.*"
+            };
+        }
+        else if ($scope.newReceivePort.source === "SFTP") {
+
+            $scope.newReceivePort = {
+                "interfaceName": "[[NAME_OF_FILE]]_From_SFTP",
+                "applicationName": "",
+                "source": "SFTP"
+            };
+
+            $scope.newReceiveLocation = {
+                "transportType": "SFTP",
+                "address": "sftp://devsftp:22/[[INT_NAME]]/Out/*.*"
+            };
+        } else {
+            $scope.newReceivePort = {};
+            $scope.newReceiveLocation = {};
+        }
+
+    }
+   
     //Post RP
     $scope.saveRP = function () {
 
@@ -55,16 +79,41 @@
 
     //#region SP variables and methods
 
-    $scope.newSendPort = {
-        "name": "SP_ESSBase_File_To_SFTP",
-        "description": null,
-        "applicationName": "BizTalk Application 1",
-        "retryCount": 15,
-        "retryInterval": 2,
-        "transportType": "FILE",
-        "address": "",
-        "pipelineName": "Microsoft.BizTalk.DefaultPipelines.PassThruTransmit"
-    };
+    $scope.newSendPort = {};
+
+    function populatePrimeDataSP() {
+        
+        if ($scope.newSendPort.target == "SAP") {
+
+            $scope.newSendPort = {
+                "name": "SP_[[NAME_OF_FILE]]_To_SAP",
+                "description": null,
+                "applicationName": "IDB.Esb.Sftp.Interfaces",
+                "retryCount": 15,
+                "retryInterval": 2,
+                "transportType": "FILE",
+                "address": "\\\\Hqtnas01\\SAP_DE1\\Int\\[[INT_NAME]]\\in\\%SourceFileName%",
+                "pipelineName": "Microsoft.BizTalk.DefaultPipelines.PassThruTransmit",
+                "target": "SAP",
+                "subscribeToRP" : $scope.newReceivePort.name
+            };
+        }
+        else if ($scope.newSendPort.target == "SFTP") {
+            $scope.newSendPort = {
+                "name": "SP_[[NAME_OF_FILE]]_To_SFTP",
+                "description": null,
+                "applicationName": "IDB.Esb.Sftp.Interfaces",
+                "retryCount": 15,
+                "retryInterval": 2,
+                "transportType": "SFTP",
+                "address": "sftp://devsftp:22/[[INT_NAME]]/In/%SourceFileName%",
+                "pipelineName": "Microsoft.BizTalk.DefaultPipelines.PassThruTransmit",
+                "target": "SFTP",
+                "subscribeToRP": $scope.newReceivePort.name
+            };
+        }
+
+    }
 
    
     //Post RP
@@ -87,39 +136,25 @@
     //#region $watches
 
     $scope.$watch('newReceivePort.interfaceName', function () {
-        $scope.newReceivePort.name = "RP_" + $scope.newReceivePort.interfaceName;
-        $scope.newReceiveLocation.name = "RL_" + $scope.newReceivePort.interfaceName;
+
+        if ($scope.newReceivePort.interfaceName != undefined) {
+            $scope.newReceivePort.name = "RP_" + $scope.newReceivePort.interfaceName;
+            $scope.newReceiveLocation.name = "RL_" + $scope.newReceivePort.interfaceName;
+        }
     }, true);
 
     $scope.$watch('newReceivePort.source', function () {
-        if ($scope.newReceivePort.source == "SAP") {
-            $scope.newReceiveLocation.transportType = "FILE";
-            $scope.newReceiveLocation.address = "C:\\BizTalkFolders\\FileTransfer\\";
-        }
-        else if ($scope.newReceivePort.source == "SFTP") {
-            $scope.newReceiveLocation.transportType = "SFTP";
-            $scope.newReceiveLocation.address = "sftp://devsftp:22/folder/Xyx/";
-        }
+        populatePrimeDataRP();
     }, true);
 
     $scope.$watch('newSendPort.target', function () {
-        if ($scope.newSendPort.target == "SAP") {
-            $scope.newSendPort.transportType = "FILE";
-            $scope.newSendPort.address = "C:\\BizTalkFolders\\FileTransfer\\Out\\%SourceFileName%";
-
-        }
-        else if ($scope.newSendPort.target == "SFTP") {
-            $scope.newSendPort.transportType = "SFTP";
-            $scope.newSendPort.address = "sftp://devsftp:22/folder/Xyx/";
-        }
+        populatePrimeDataSP();
     }, true);
 
     //#endregion
 
     //#region FMR
     $scope.fmr = {
-        "rpName": $scope.newReceivePort.name,
-        "spName": $scope.newSendPort.name,
         "emailInfo":
                     {
                         "to": "vasanths@iadb.org",
@@ -133,7 +168,9 @@
 
     //Post RP
     $scope.saveFMR = function () {
-        
+        $scope.fmr.rpName = $scope.newReceivePort.name;
+        $scope.fmr.spName = $scope.newSendPort.name;
+
         dataService.addFMR($scope.fmr).then(function () {
             //Success
             $scope.successMessage = true;

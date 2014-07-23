@@ -24,4 +24,5 @@
     else {
         $scope.receivePorts = dataService.rps;
     }
+
 }
