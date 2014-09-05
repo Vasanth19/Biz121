@@ -104,9 +104,17 @@
 												<div class="panel-body">
 													<p> TransPort Type : {{rl.transportType}}</p>
                                                     <p style="overflow-wrap: break-word;overflow-x: visible"> Address : {{rl.address}}</p>
-                                                    <p> Retry Count : {{rl.retryCount}}</p>
-                                                    <p> Retry Interval : {{rl.retryInterval}}</p>
-                                                    <p> Pipeline Name : {{rl.pipelineName}}</p>
+												    <p> Pipeline Name : {{rl.pipelineName}}</p>
+                                                     <p>
+                                                        <div class="alert alert-success" ng-show="rl.transportTypeData">
+                                                            <button type="button" class="close" data-dismiss="alert">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </button>
+                                                            <strong>Additional Transport Configuration</strong>
+                                                            {{rl.transportTypeData}}
+										                <br>
+                                                        </div>
+                                                       </p>
 												</div>
 											</div>
 										</div>

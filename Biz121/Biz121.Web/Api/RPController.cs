@@ -17,7 +17,7 @@ namespace Biz121.Web.Api
 {
     [RoutePrefix("api/v1")]
     [Route("rp")]
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
      public class RPController : ApiController
     {
         // GET api/receivelocation

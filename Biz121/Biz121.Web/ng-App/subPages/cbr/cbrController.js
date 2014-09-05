@@ -1,6 +1,7 @@
 ﻿function cbrController($scope, $http, $location, dataService) {
     $scope.errorMessage = '';
-    
+    $scope.isBusy = false;
+
     //#region Pull Apps
     $scope.applications = [];
 
@@ -24,6 +25,7 @@
     $scope.newReceivePort = {};
     $scope.newReceiveLocation = {};
 
+    
     function populatePrimeDataRP() {
         if ($scope.newReceivePort.source === "SAP") {
 
@@ -59,7 +61,7 @@
    
     //Post RP
     $scope.saveRP = function () {
-
+        $scope.isBusy = true;
         //Associate RL with RP
         $scope.newReceivePort.rLs = [];
         $scope.newReceivePort.rLs.push($scope.newReceiveLocation);
@@ -72,6 +74,9 @@
         }, function (result,status) {
             //Error
             $scope.errorMessage = result.data.message;
+        })
+        .then(function() {
+            $scope.isBusy = false;
         });
     };
 

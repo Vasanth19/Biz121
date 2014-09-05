@@ -31,7 +31,7 @@ namespace Biz121.Web
         protected void Application_AuthorizeRequest(object sender, EventArgs e)
         {
             //Custom Role Provider
-            AuthorizationConfig.Initialize();
+     //       AuthorizationConfig.Initialize();
         }
     }
 }

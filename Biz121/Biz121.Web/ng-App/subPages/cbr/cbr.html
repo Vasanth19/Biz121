@@ -113,12 +113,22 @@
             })
             .on('finished', function(e) {
                 bootbox.dialog({
-                    message: "Thank you! Your information was successfully saved!",
+                    message: "Thank you! You Successfully Created a Context Based Routing.!",
                     buttons: {
                         "success": {
-                            "label": "OK",
-                            "className": "btn-sm btn-primary"
-                        }
+                            "label": "Go to Main",
+                            "className": "btn-sm btn-primary",
+                            callback: function () {
+                                window.location.href = "/";
+                            }
+                        },
+                        "1More": {
+                            "label": "Create 1 More",
+                            "className": "btn-sm btn-primary",
+                            callback: function () {
+                                window.location.reload();
+                            }
+                        },
                     }
                 });
             }).on('stepclick', function(e) {

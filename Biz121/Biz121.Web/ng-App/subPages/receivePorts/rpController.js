@@ -14,7 +14,7 @@
        .then(function (_rps) {
            //Success
            $scope.receivePorts = _rps;
-           console.log($scope.receivePorts);
+  //         console.log($scope.receivePorts);
        }, function (status) { //Error
            handleError(status);
            console.log("Error Occured while fetching Receive Ports " + status);

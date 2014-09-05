@@ -39,8 +39,6 @@ namespace Biz121.Web.Api
                     Address = @"C:\File\File.txt" + i,
                     Name = "Receive Location " + i,
                     PipelineName = "PassThru Pipeline" + i,
-                    RetryCount = 5,
-                    RetryInterval = 5,
                     TransportType = "File",
                     TransportTypeData = "<Group><FileNet>5</FileNet></Group>"
                 }
@@ -78,8 +76,6 @@ namespace Biz121.Web.Api
                     Address = @"C:\File\File.txt" + i,
                     Name = "Receive Location " + i,
                     PipelineName = "PassThru Pipeline" + i,
-                    RetryCount = 5,
-                    RetryInterval = 5,
                     TransportType = "File",
                     TransportTypeData = "<Group><FileNet>5</FileNet></Group>"
                 }

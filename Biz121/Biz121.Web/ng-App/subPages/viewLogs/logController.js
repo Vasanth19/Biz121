@@ -18,7 +18,9 @@
        }, function (status) { //Error
            handleError(status);
            console.log("Error Occured while fetching Logs " + status);
-
-       });
+       })
+    .then(function() {
+            $scope.isBusy = false;
+        });
    
 }

@@ -49,6 +49,9 @@
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
                 <div class="row">
+                    <div class="progress progress-striped active col-sm-offset-3 col-sm-6" ng-show="isBusy">
+                     <div class="progress-bar progress-bar-purple" style="width: 100%"></div>
+                    </div>
                     <div class="col-xs-12">
                         <table id="sample-table-1" class="table table-bordered table-hover">
                             <thead>
@@ -61,45 +64,45 @@
                                     <th style="width: 25%">Description</th>
                                     <th style="width: 25%" class="hidden-480">
                                         <i class="ace-icon fa fa-clock-o bigger-110 "></i>
-                                       Additional Info
+                                        Additional Info
                                     </th>
 
                                 </tr>
                             </thead>
 
                             <tbody>
-                               <tr ng-repeat="log in logs | filter:query" >
+                                <tr ng-repeat="log in logs | filter:query" >
 
                                 
                                     <td class="tdcolumn">
-									    <b >{{log.AppId }}</b>
+                                        <b >{{log.AppId }}</b>
                                     </td>
-                                   <td class="tdcolumn">{{log.Module}}</td>
-                                   <td>{{log.Created | date:'MM/dd/yyyy @ h:mma'}} </td>
+                                    <td class="tdcolumn">{{log.Module}}</td>
+                                    <td>{{log.Created | date:'MM/dd/yyyy @ h:mma'}} </td>
                                     <td>{{log.Message}} </td>
-                                   <td style="max-width: 30%;">{{log.Description}} </td>
-                                     <td class="hidden-480" style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 410px;word-wrap:break-word">
+                                    <td style="max-width: 30%;">{{log.Description}} </td>
+                                    <td class="hidden-480" style="overflow-wrap:break-word !important;overflow-x: visible;max-width: 410px;word-wrap:break-word">
                                         <div id="accordionRP{{$index}}" class="accordion-style1 panel-group no-margin " >
-										<div class="panel panel-default" >
-											<div class="panel-heading">
-												<h4 class="panel-title">
-													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionRP{{$parent.$index}}" data-target="#collapse{{$parent.$index}}{{$index}}">
-														<i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
-														&nbsp; Additional Info&nbsp; 
+                                            <div class="panel panel-default" >
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionRP{{$parent.$index}}" data-target="#collapse{{$parent.$index}}{{$index}}">
+                                                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                                                            &nbsp; Additional Info&nbsp; 
                                                        
-													</a>
-												</h4>
-											</div>
+                                                        </a>
+                                                    </h4>
+                                                </div>
 
-											<div class="panel-collapse collapse" id="collapse{{$parent.$index}}{{$index}}">
-												<div class="panel-body">
-													<p> {{log.AdditionalInfo}}</p>
+                                                <div class="panel-collapse collapse" id="collapse{{$parent.$index}}{{$index}}">
+                                                    <div class="panel-body">
+                                                        <p> {{log.AdditionalInfo}}</p>
                                                
-												</div>
-											</div>
-										</div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-									</div>
+                                        </div>
                                     </td>
                                 </tr>
 
